@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 420" width="100%" height="100%" role="img" aria-labelledby="triad-title triad-desc">
+  <title id="triad-title">ProjectOS Continuous Architectural Decision Lifecycle</title>
+  <desc id="triad-desc">Diagram showing how a single authoritative Decision Record connects Project Brain before a change, Change Impact Intelligence during review, and AI Git Timeline after the commit.</desc>
+  <defs>
+    <style>
+      .bg { fill: #090D16; }
+      .frame { fill: none; stroke: #1E293B; stroke-width: 2; }
+      .hub-card { fill: #131C31; stroke: #38BDF8; stroke-width: 2; }
+      .card-purple { fill: #0F172A; stroke: #6366F1; stroke-width: 1.75; }
+      .card-amber { fill: #0F172A; stroke: #F59E0B; stroke-width: 1.75; }
+      .card-emerald { fill: #0F172A; stroke: #10B981; stroke-width: 1.75; }
+      .badge-purple { fill: #1E1B4B; stroke: #4F46E5; stroke-width: 1; }
+      .badge-amber { fill: #451A03; stroke: #D97706; stroke-width: 1; }
+      .badge-emerald { fill: #064E3B; stroke: #059669; stroke-width: 1; }
+      .badge-cyan { fill: #0C4A6E; stroke: #0284C7; stroke-width: 1; }
+      .code-box { fill: #090D16; stroke: #1E293B; stroke-width: 1; }
+      .text-main { fill: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .text-muted { fill: #94A3B8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .text-dim { fill: #64748B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .text-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+      .flow-arrow { fill: none; stroke: #475569; stroke-width: 2; }
+      .hub-link-p { fill: none; stroke: #818CF8; stroke-width: 1.75; stroke-dasharray: 4 4; }
+      .hub-link-a { fill: none; stroke: #FBBF24; stroke-width: 1.75; stroke-dasharray: 4 4; }
+      .hub-link-e { fill: none; stroke: #34D399; stroke-width: 1.75; stroke-dasharray: 4 4; }
+    </style>
+    <marker id="arr-slate" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+    <marker id="arr-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="420" rx="14" class="bg"/>
+
+  <!-- Top Shared Spine: One Authoritative Decision Record -->
+  <g transform="translate(310, 22)">
+    <rect x="0" y="0" width="500" height="68" rx="10" class="hub-card"/>
+    <rect x="18" y="14" width="150" height="20" rx="4" class="badge-cyan"/>
+    <text x="93" y="28" text-anchor="middle" fill="#7DD3FC" class="text-mono" font-size="10" font-weight="700">SINGLE SOURCE OF TRUTH</text>
+    <text x="182" y="29" class="text-main" font-size="15" font-weight="700">Authoritative Architectural Decision Record</text>
+    <text x="18" y="52" class="text-muted text-mono" font-size="11">ID: DEC-014 / DEC-015  •  Scope  •  Approved Rationale  •  Human Approver  •  Supersession Lineage</text>
+  </g>
+
+  <!-- Dashed Links from Shared Record to Three Lifecycle Stages -->
+  <path d="M 380 90 L 195 90 L 195 132" class="hub-link-p"/>
+  <path d="M 560 90 L 560 132" class="hub-link-a"/>
+  <path d="M 740 90 L 925 90 L 925 132" class="hub-link-e"/>
+
+  <!-- STAGE 1: BEFORE THE CHANGE (Project Brain) -->
+  <g transform="translate(35, 134)">
+    <rect x="0" y="0" width="320" height="226" rx="10" class="card-purple"/>
+    <rect x="18" y="16" width="144" height="22" rx="5" class="badge-purple"/>
+    <text x="90" y="31" text-anchor="middle" fill="#A5B4FC" class="text-mono" font-size="10" font-weight="700">01 • BEFORE THE CHANGE</text>
+    <text x="298" y="31" text-anchor="end" fill="#818CF8" class="text-mono" font-size="11" font-weight="700">MCP READ</text>
+
+    <text x="18" y="64" class="text-main" font-size="18" font-weight="700">Project Brain</text>
+    <text x="18" y="85" class="text-muted" font-size="12.5">Authoritative Architectural Memory</text>
+
+    <text x="18" y="112" class="text-muted" font-size="11.5">• Recovers human-approved decisions &amp; rationale</text>
+    <text x="18" y="131" class="text-muted" font-size="11.5">• Exposes constraints, tradeoffs &amp; superseded IDs</text>
+    <text x="18" y="150" class="text-muted" font-size="11.5">• Enforces human-only approval boundary</text>
+
+    <rect x="18" y="166" width="284" height="44" rx="6" class="code-box"/>
+    <text x="28" y="184" fill="#A5B4FC" class="text-mono" font-size="10.5" font-weight="600">DEC-014: PostgreSQL Persistence</text>
+    <text x="28" y="200" class="text-dim text-mono" font-size="10">Status: Approved • Scope: src/db/*, orders</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 355 247 L 395 247" class="flow-arrow" marker-end="url(#arr-slate)"/>
+
+  <!-- STAGE 2: DURING REVIEW (Change Impact Intelligence) -->
+  <g transform="translate(400, 134)">
+    <rect x="0" y="0" width="320" height="226" rx="10" class="card-amber"/>
+    <rect x="18" y="16" width="152" height="22" rx="5" class="badge-amber"/>
+    <text x="94" y="31" text-anchor="middle" fill="#FCD34D" class="text-mono" font-size="10" font-weight="700">02 • PRIOR TO EDITING</text>
+    <text x="298" y="31" text-anchor="end" fill="#FBBF24" class="text-mono" font-size="11" font-weight="700">AST + GIT</text>
+
+    <text x="18" y="64" class="text-main" font-size="18" font-weight="700">Change Impact Intelligence</text>
+    <text x="18" y="85" class="text-muted" font-size="12.5">Evidence-Backed Blast Radius &amp; Conflicts</text>
+
+    <text x="18" y="112" class="text-muted" font-size="11.5">• Inspects real imports &amp; symbols via ts-morph</text>
+    <text x="18" y="131" class="text-muted" font-size="11.5">• Flags contradictions with active decisions</text>
+    <text x="18" y="150" class="text-muted" font-size="11.5">• Separates verified facts from AI predictions</text>
+
+    <rect x="18" y="166" width="284" height="44" rx="6" class="code-box"/>
+    <text x="28" y="184" fill="#FCD34D" class="text-mono" font-size="10.5" font-weight="600">Conflict: DEC-014 (Verified: client.ts)</text>
+    <text x="28" y="200" class="text-dim text-mono" font-size="10">Proposal → DEC-015 (Pending Human Review)</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 720 247 L 760 247" class="flow-arrow" marker-end="url(#arr-slate)"/>
+
+  <!-- STAGE 3: AFTER THE CHANGE (AI Git Timeline) -->
+  <g transform="translate(765, 134)">
+    <rect x="0" y="0" width="320" height="226" rx="10" class="card-emerald"/>
+    <rect x="18" y="16" width="144" height="22" rx="5" class="badge-emerald"/>
+    <text x="90" y="31" text-anchor="middle" fill="#6EE7B7" class="text-mono" font-size="10" font-weight="700">03 • AFTER THE COMMIT</text>
+    <text x="298" y="31" text-anchor="end" fill="#34D399" class="text-mono" font-size="11" font-weight="700">GIT LINK</text>
+
+    <text x="18" y="64" class="text-main" font-size="18" font-weight="700">AI Git Timeline</text>
+    <text x="18" y="85" class="text-muted" font-size="12.5">Bidirectional Commit-to-Decision Provenance</text>
+
+    <text x="18" y="112" class="text-muted" font-size="11.5">• Associates real Git commits with Decision IDs</text>
+    <text x="18" y="131" class="text-muted" font-size="11.5">• Navigates commit → rationale &amp; decision → diffs</text>
+    <text x="18" y="150" class="text-muted" font-size="11.5">• Preserves normal Git history without rewriting</text>
+
+    <rect x="18" y="166" width="284" height="44" rx="6" class="code-box"/>
+    <text x="28" y="184" fill="#6EE7B7" class="text-mono" font-size="10.5" font-weight="600">Commit a82f1c ↔ Approved DEC-015</text>
+    <text x="28" y="200" class="text-dim text-mono" font-size="10">Supersedes DEC-014 • Rationale attached</text>
+  </g>
+
+  <!-- Bottom Return Loop: Cross-Agent Continuity -->
+  <path d="M 925 360 L 925 388 L 195 388 L 195 364" fill="none" stroke="#38BDF8" stroke-width="1.75" marker-end="url(#arr-cyan)"/>
+  <rect x="370" y="375" width="380" height="24" rx="12" fill="#0C4A6E" stroke="#0284C7" stroke-width="1"/>
+  <text x="560" y="391" text-anchor="middle" fill="#E0F2FE" class="text-mono" font-size="10.5" font-weight="600">
+    CROSS-AGENT CONTINUITY: Next session recovers updated context via MCP
+  </text>
+
+  <rect x="1" y="1" width="1118" height="418" rx="13" class="frame"/>
+</svg>
