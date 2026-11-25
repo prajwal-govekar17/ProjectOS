@@ -1,8 +1,46 @@
+<div align="center">
+
 # ProjectOS
 
 **An MCP-powered, decision-aware software engineering platform that connects AI coding agents with a project's approved architectural decisions, repository-grounded change-impact analysis, and Git history linked to the reasons behind code changes.**
 
-> Project memory. Change awareness. Git traceability.
+*Project memory. Change awareness. Git traceability.*
+
+<br/>
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![MCP](https://img.shields.io/badge/MCP-Protocol-4A154B?style=for-the-badge)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white)
+
+</div>
+
+---
+
+## Table of Contents
+
+- [The Problem](#the-problem)
+- [The Solution](#the-solution)
+- [Who ProjectOS Is For](#who-projectos-is-for)
+- [System Architecture](#system-architecture)
+- [User Flow](#user-flow)
+- [Feature One -- Project Brain](#feature-one----project-brain)
+- [Feature Two -- Change Impact Intelligence](#feature-two----change-impact-intelligence)
+- [Feature Three -- AI Git Timeline](#feature-three----ai-git-timeline)
+- [Why the Features Belong Together](#why-the-features-belong-together)
+- [End-to-End Workflow](#end-to-end-workflow)
+- [Technology Stack](#technology-stack)
+- [How AI and MCP Responsibilities Are Divided](#how-ai-and-mcp-responsibilities-are-divided)
+- [What Human Approval Really Means](#what-human-approval-really-means)
+- [Novelty and Competitive Landscape](#novelty-and-competitive-landscape)
+- [Design Principles](#design-principles)
+- [Why ProjectOS](#why-projectos)
 
 ---
 
@@ -18,7 +56,7 @@ This creates three recurring problems in AI-assisted development:
 
 **Git records changes more clearly than reasons.** Git reliably records commits, authors, diffs, and changed files. It does not automatically preserve the project-level reasoning or human approval that motivated those changes. After several months -- or after switching agents -- a developer may see *what* changed but struggle to answer *why*.
 
-**The central problem:** AI-assisted coding needs continuity of intent, an evidence-backed view of proposed change impact, and durable traceability between decisions and actual code changes.
+> **The central problem:** AI-assisted coding needs continuity of intent, an evidence-backed view of proposed change impact, and durable traceability between decisions and actual code changes.
 
 ---
 
@@ -53,9 +91,61 @@ Agent and provider neutrality is central. ProjectOS is designed for **MCP-compat
 
 ## System Architecture
 
+<div align="center">
+
 ![ProjectOS System Architecture](assets/projectos-architecture.png)
 
+</div>
+
 The architecture is organized into four layers connected by three well-defined interfaces:
+
+```mermaid
+flowchart TD
+    subgraph L1["LAYER 1 -- Developer + Agent"]
+        DEV["Developer\nDefines request, reviews decisions"]
+        AGENT["AI Coding Agent\nCodex / Claude Code / Antigravity"]
+    end
+
+    subgraph L2["LAYER 2 -- MCP + Repository"]
+        MCP["ProjectOS MCP Server\nTypeScript MCP SDK"]
+        TSM["ts-morph\nJS/TS static analysis"]
+        GIT["Git CLI\nCommits, diffs, history"]
+        REPO["Local Git Repository"]
+    end
+
+    subgraph L3["LAYER 3 -- Backend + Database"]
+        API["Express REST API\nExpress.js 5, TypeScript"]
+        BRAIN_LOGIC["Project Brain Logic\nDecision lifecycle, approvals"]
+        ZOD["Zod Validation\nRuntime request validation"]
+        DB["SQLite Database\nDecisions, proposals, Git links"]
+    end
+
+    subgraph L4["LAYER 4 -- Web Dashboard"]
+        DASH["React Dashboard\nTypeScript, Vite"]
+        PBV["Project Brain View\nDecision review and approval"]
+        IG["Impact Graph\nReact Flow visualization"]
+        AIGT["AI Git Timeline\nCommit-to-decision explorer"]
+    end
+
+    AGENT -- "MCP Protocol" --> MCP
+    MCP --> TSM
+    MCP --> GIT
+    TSM --> REPO
+    GIT --> REPO
+    MCP -- "REST / HTTPS" --> API
+    API --> BRAIN_LOGIC
+    API --> ZOD
+    BRAIN_LOGIC --> DB
+    DASH -- "REST / HTTPS" --> API
+    DASH --> PBV
+    DASH --> IG
+    DASH --> AIGT
+
+    style L1 fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px
+    style L2 fill:#fef3c7,stroke:#d97706,stroke-width:2px
+    style L3 fill:#dbeafe,stroke:#2563eb,stroke-width:2px
+    style L4 fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+```
 
 ### Layer 1 -- Developer + Agent
 
@@ -72,7 +162,7 @@ Two local analysis engines operate directly against the developer's repository:
 - **ts-morph** -- deterministic code intelligence for supported TypeScript/JavaScript source relationships (imports, references, dependencies). It is not an AI model.
 - **Git CLI** -- factual commit hashes, diffs, changed files, and repository history.
 
-**Interface:** The MCP server communicates with the Express backend via **REST over HTTP(S)** for shared project state, decision records, proposals, impact findings, and Git associations.
+**Interface:** The MCP server communicates with the Express backend via **REST over HTTP(S)**.
 
 ### Layer 3 -- Backend + Database
 
@@ -95,9 +185,7 @@ The **React dashboard** (TypeScript, Vite) is the human review surface with thre
 - **Impact Graph (React Flow)** -- visualize affected code relationships, components, decisions, and evidence categories.
 - **AI Git Timeline** -- explore commits, changed files, and their associated approved reasoning.
 
-The dashboard is not the MCP client used by the coding agent. It is the human-facing decision review and exploration interface.
-
-### Architecture Summary
+### Architecture Interfaces Summary
 
 | From | To | Protocol | Purpose |
 | --- | --- | --- | --- |
@@ -105,7 +193,61 @@ The dashboard is not the MCP client used by the coding agent. It is the human-fa
 | Local ProjectOS MCP server | Shared Express backend | **REST / HTTPS** | Retrieve and store decisions, proposals, reports, and Git links |
 | React dashboard | Shared Express backend | **REST / HTTPS** | Display project state and perform human-authorized actions |
 
-**Important deployment boundary:** Even when the backend and dashboard run remotely, the coding agent, local MCP server, ts-morph, Git CLI, and actual local repository remain on the developer's machine. The remote backend cannot directly inspect the developer's local source files.
+> **Important deployment boundary:** Even when the backend and dashboard run remotely, the coding agent, local MCP server, ts-morph, Git CLI, and actual local repository remain on the developer's machine. The remote backend cannot directly inspect the developer's local source files.
+
+---
+
+## User Flow
+
+The following diagram captures the complete user workflow across four phases, from initial setup through traceable Git history.
+
+```mermaid
+flowchart LR
+    subgraph P1["01 SETUP + RETRIEVE"]
+        A["Connect repo + MCP\nScan dependencies"]
+        B["Project Brain\nHuman-approved context"]
+        C["Request change\nAgent retrieves context via MCP"]
+        A --> B --> C
+    end
+
+    subgraph P2["02 ANALYZE"]
+        D["Change Impact Intelligence\nFiles, dependencies, decisions"]
+        E["Impact report\nVerified vs predicted\nPossible decision conflicts"]
+        D --> E
+    end
+
+    subgraph P3["03 DECIDE"]
+        F{"Human review:\nChange or add\na decision?"}
+        G["Submit pending proposal\nwith rationale via MCP"]
+        H{"Human approves?\nProjectOS dashboard"}
+        I["Save approved decision\nSupersede old if applicable"]
+        J["Keep decision\nRevise and re-analyze"]
+        F -- "New / Changed" --> G --> H
+        H -- "Approve" --> I
+        H -- "Reject" --> J
+    end
+
+    subgraph P4["04 RECORD"]
+        K["Agent implements\nreviewed plan"]
+        L["Developer reviews,\ntests and commits"]
+        M["AI Git: explicit link\nDecision ID to commit"]
+        N["Inspect WHY / history\nNext agent retrieves\nupdated context via MCP"]
+        K --> L --> M --> N
+    end
+
+    C --> D
+    E --> F
+    F -- "No decision change" --> K
+    I --> K
+    J -- "Redesign" --> D
+
+    style P1 fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px
+    style P2 fill:#fef3c7,stroke:#d97706,stroke-width:2px
+    style P3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style P4 fill:#dbeafe,stroke:#2563eb,stroke-width:2px
+```
+
+**Color key:** Purple = Setup and Retrieval | Amber = Analysis | Green = Decision and Approval | Blue = Record and Traceability
 
 ---
 
@@ -125,6 +267,30 @@ For each decision, it preserves:
 - Relationships to older decisions that have been superseded.
 
 ### Decision Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> Proposed : Developer or agent suggests
+
+    Proposed --> Approved : Human approves via dashboard
+    Proposed --> Rejected : Human rejects via dashboard
+
+    Approved --> Superseded : Newer decision approved
+
+    Rejected --> [*] : Retained as historical record
+    Superseded --> [*] : Retained as historical record
+    Approved --> [*] : Active policy
+
+    note right of Proposed
+        AI agents can submit proposals
+        but cannot approve them
+    end note
+
+    note right of Approved
+        Only an authorized human
+        can move a decision here
+    end note
+```
 
 | Status | Meaning |
 | --- | --- |
@@ -171,6 +337,26 @@ The connected agent's LLM may then interpret those findings and suggest possible
 
 ### Evidence Categories
 
+```mermaid
+flowchart LR
+    subgraph VERIFIED["Verified Evidence"]
+        VR["Repository Relationship\nConfirmed by source or Git"]
+        PR["Project Relationship\nPresent in Project Brain"]
+    end
+
+    subgraph UNVERIFIED["Requires Judgment"]
+        AI["AI Prediction\nPlausible but unconfirmed"]
+        UK["Unknown / Needs Review\nCannot establish confidently"]
+    end
+
+    VR -- "highest confidence" --> PR
+    PR -- "recorded context" --> AI
+    AI -- "needs confirmation" --> UK
+
+    style VERIFIED fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style UNVERIFIED fill:#fef3c7,stroke:#d97706,stroke-width:2px
+```
+
 | Category | Meaning | Example |
 | --- | --- | --- |
 | **Verified repository relationship** | A relationship confirmed by available source or Git evidence | One TypeScript module directly imports another |
@@ -210,6 +396,23 @@ AI Git Timeline answers:
 
 It builds on **Git**, rather than replacing Git. The Git CLI supplies factual commit hashes, file histories, and diff information. ProjectOS records explicit associations between those real Git references and Project Brain decision IDs.
 
+```mermaid
+flowchart LR
+    COMMIT["Git Commit\na82f1c"] --> FILES["Changed Files\nsrc/db/client.ts"]
+    FILES --> LINK["Decision Link\nDEC-015"]
+    LINK --> DECISION["Approved Decision\nMigrate persistence to MongoDB"]
+    DECISION --> RATIONALE["Recorded Rationale\nDocument-oriented data model\nsupersedes PostgreSQL choice"]
+
+    DECISION --> HISTORY["Decision History\nSuperseded DEC-014"]
+
+    style COMMIT fill:#dbeafe,stroke:#2563eb,stroke-width:2px
+    style FILES fill:#dbeafe,stroke:#2563eb,stroke-width:2px
+    style LINK fill:#fef3c7,stroke:#d97706,stroke-width:2px
+    style DECISION fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style RATIONALE fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style HISTORY fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px
+```
+
 ### What Users Can Explore
 
 - A timeline of actual repository commits.
@@ -239,6 +442,25 @@ It uses the developer's ordinary Git workflow and adds the **decision-to-change 
 ---
 
 ## Why the Features Belong Together
+
+```mermaid
+flowchart TD
+    DECISION["One Authoritative\nDecision Record"]
+
+    DECISION --> BEFORE["BEFORE the change\nProject Brain\nRetrieve approved intent"]
+    DECISION --> DURING["DURING review\nChange Impact Intelligence\nInspect likely effects"]
+    DECISION --> AFTER["AFTER the change\nAI Git Timeline\nTrace commit to reason"]
+
+    BEFORE --> INTEGRATED["Integrated Product\nNot three disconnected tools"]
+    DURING --> INTEGRATED
+    AFTER --> INTEGRATED
+
+    style DECISION fill:#fef3c7,stroke:#d97706,stroke-width:2px
+    style BEFORE fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px
+    style DURING fill:#dcfce7,stroke:#16a34a,stroke-width:2px
+    style AFTER fill:#dbeafe,stroke:#2563eb,stroke-width:2px
+    style INTEGRATED fill:#f1f5f9,stroke:#475569,stroke-width:2px
+```
 
 | Developer's Question | ProjectOS Feature |
 | --- | --- |
@@ -284,25 +506,82 @@ This is the canonical story that connects everything in the architecture:
 
 12. **Another coding session can recover the new context.** A compatible agent connected to the same ProjectOS project can retrieve the current approved decision rather than relying on its own potentially outdated session memory.
 
-This is a coherent **decision, impact, human review, implementation, traceable Git history** workflow. MCP matters because the developer's existing coding agent actually accesses these capabilities as tools.
-
 ---
 
 ## Technology Stack
 
-| Layer | Technology | Role in ProjectOS |
-| --- | --- | --- |
-| **Frontend** | React.js, TypeScript, Vite | Interactive, type-safe dashboard for decision review, impact exploration, and commit history |
-| **Graph visualization** | React Flow | Visual representation of impacted files, modules, relationships, and decisions |
-| **Backend** | Node.js, Express.js 5, TypeScript | Lightweight application API for persistent project state and dashboard/MCP communication |
-| **Validation** | Zod | Runtime validation of data entering backend and tool boundaries |
-| **Database** | SQLite | Relational storage for approved decisions, proposals, history, selected impact reports, and decision-Git links |
-| **Agent interface** | Model Context Protocol (MCP), official TypeScript MCP SDK | Standardized tools for compatible coding agents; the center of the product's agent integration |
-| **Source intelligence** | ts-morph | Analysis of supported TypeScript/JavaScript imports, references, and dependencies in the local repository |
-| **Version control** | Git CLI | Real commit, file, diff, and history evidence; does not replace Git |
-| **AI reasoning** | External LLM within the connected coding agent | Understands user requests and reasons about possible indirect impacts; no in-house model |
-| **API communication** | REST over HTTPS | Connects the local MCP service and browser dashboard to the Express backend |
-| **Planned hosting** | AWS EC2, Amazon EBS | Intended shared backend/dashboard hosting and persistent SQLite volume |
+### Frontend
+
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![React Flow](https://img.shields.io/badge/React_Flow-FF0072?style=flat-square)
+
+**React.js, TypeScript, Vite, React Flow**
+
+Reusable decision/Git views, typed data, static builds and interactive impact graphs. React Flow powers the visual Impact Graph for exploring affected files, modules, and decision relationships.
+
+### Backend
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express_5-000000?style=flat-square&logo=express&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Zod](https://img.shields.io/badge/Zod-3E67B1?style=flat-square&logo=zod&logoColor=white)
+
+**Node.js, Express.js 5, TypeScript, Zod**
+
+Shared TypeScript runtime, REST APIs, validated inputs and human approval controls. Zod provides runtime validation at every data boundary.
+
+### Database
+
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
+
+**SQLite**
+
+Stores architectural decisions, impact reports and Git links without a separate database server. Relational storage for approved decisions, proposals, approval history, and commit-to-decision associations.
+
+### AI / LLM
+
+![LLM](https://img.shields.io/badge/Agent--Agnostic-LLM_Reasoning-8B5CF6?style=flat-square)
+
+**Agent-agnostic LLM reasoning**
+
+Connected coding agents interpret proposed changes without requiring a separately hosted model. There is no dedicated ProjectOS-hosted LLM or proprietary trained model.
+
+### MCP Integration
+
+![MCP](https://img.shields.io/badge/MCP-Official_TypeScript_SDK-4A154B?style=flat-square)
+
+**Model Context Protocol, Official TypeScript MCP SDK**
+
+Standardized agent access to Project Brain, Change Impact Intelligence and AI Git. The center of the product's agent integration, enabling any compatible coding agent to retrieve and contribute project context.
+
+### Code Intelligence
+
+![ts-morph](https://img.shields.io/badge/ts--morph-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Git](https://img.shields.io/badge/Git_CLI-F05032?style=flat-square&logo=git&logoColor=white)
+
+**ts-morph, Git CLI**
+
+ts-morph traces real JS/TS dependencies; Git CLI retrieves actual commits, diffs, and file changes. Both operate locally against the developer's repository.
+
+### Cloud (Planned)
+
+![AWS EC2](https://img.shields.io/badge/AWS_EC2-FF9900?style=flat-square&logo=amazonec2&logoColor=white)
+![Amazon EBS](https://img.shields.io/badge/Amazon_EBS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
+
+**AWS EC2, Amazon EBS**
+
+EC2 hosts the shared application; EBS preserves SQLite data. This is the intended deployment arrangement for the shared backend/dashboard, not a replacement for the locally running MCP server.
+
+### APIs and Security
+
+![REST](https://img.shields.io/badge/REST-HTTPS-009688?style=flat-square)
+![Express Sessions](https://img.shields.io/badge/Express-Sessions-000000?style=flat-square&logo=express&logoColor=white)
+
+**REST over HTTPS, Express Sessions**
+
+REST connects components; sessions maintain developer login, with approvals protected by Express. Ensures an AI proposal is not equivalent to human approval.
 
 ---
 
@@ -333,6 +612,32 @@ ProjectOS approval is not the same as an editor asking "Allow this AI to modify 
 | Does not explain why an architecture changed | Preserves rationale, history, and the decision-to-Git relationship |
 
 The developer may reject an architectural proposal even when the coding agent technically has file-write permission. Conversely, approving a ProjectOS decision does not grant the agent unrestricted filesystem privileges.
+
+---
+
+## Novelty and Competitive Landscape
+
+### Competitive Comparison
+
+| Capability | Existing Solutions | ProjectOS |
+| --- | --- | --- |
+| **Decision Continuity** | **ProjectMem** -- Persistent cross-agent memory, decision history and pre-commit warnings | Preserves approved architectural decisions and their rationale to inform future development |
+| **Change Impact Analysis** | **GitNexus** -- Codebase dependency mapping and pre-change impact analysis | Identifies affected files, dependencies and approved decisions, distinguishing verified evidence from AI predictions |
+| **Decision Governance** | **AsDecided** -- Architectural decision management, read-only MCP access and compliance checks | Enables impact-informed decision proposals with explicit human approval or rejection |
+| **Implementation Traceability** | **Entire** -- Links AI coding sessions, prompts and reasoning to Git history | Links actual Git commits and changed files to human-approved architectural decisions and their rationale |
+| **Technology Integration** | Overlapping capabilities across memory, impact analysis, governance and traceability tools | Unifies architectural context, pre-change impact analysis, human approval and Git provenance through MCP |
+
+### What Sets ProjectOS Apart
+
+ProjectOS combines four capabilities that existing tools address only in isolation:
+
+**Decision-Centric Memory** -- Persistent project memory that preserves approved architectural decisions, their reasoning and evolution, rather than just conversation history or instructions.
+
+**Decision-Aware Impact Analysis** -- Combines repository dependency analysis with approved decisions to reveal potential impacts before implementation. Evidence is distinguished from prediction.
+
+**Impact-Informed Human Governance** -- Developers review potential consequences before approving, revising or retaining architectural decisions. The review is informed by actual repository evidence, not just the proposal text.
+
+**Cross-Agent Decision Traceability** -- Connects Git changes to approved decisions and makes their reasoning accessible across coding agents through MCP. The same project context survives switching agents, sessions, and contributors.
 
 ---
 
