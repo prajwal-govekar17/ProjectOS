@@ -1,0 +1,34 @@
+{
+  "name": "@projectos/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {},
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -b tsconfig.build.json",
+    "start": "node --env-file-if-exists=../../.env dist/server.js",
+    "db:migrate:development": "node --env-file-if-exists=../../.env.migration.development src/db/migration-command.ts development",
+    "db:migrate:production": "node --env-file-if-exists=../../.env.migration.production src/db/migration-command.ts production",
+    "db:verify-data-api:development": "node --env-file-if-exists=../../.env.migration.development src/db/verify-data-api.ts development",
+    "db:verify-data-api:production": "node --env-file-if-exists=../../.env.migration.production src/db/verify-data-api.ts production",
+    "auth:provision:development": "node --env-file-if-exists=../../.env.migration.development src/auth/operator-command.ts development provision",
+    "auth:agent:development": "node --env-file-if-exists=../../.env.migration.development src/auth/operator-command.ts development",
+    "auth:agent:production": "node --env-file-if-exists=../../.env.migration.production src/auth/operator-command.ts production"
+  },
+  "dependencies": {
+    "@projectos/contracts": "0.1.0",
+    "connect-pg-simple": "10.0.0",
+    "express": "5.2.1",
+    "express-session": "1.19.0",
+    "pg": "8.23.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/connect-pg-simple": "7.0.3",
+    "@types/express": "5.0.6",
+    "@types/express-session": "1.19.0",
+    "@types/node": "24.11.0",
+    "@types/pg": "8.23.1"
+  }
+}
