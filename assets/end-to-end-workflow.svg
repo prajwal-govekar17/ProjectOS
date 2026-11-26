@@ -1,224 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 430" width="100%" height="100%" role="img" aria-labelledby="wf-title wf-desc">
-  <title id="wf-title">ProjectOS End-to-End Operational Workflow</title>
-  <desc id="wf-desc">Four-column operational workflow diagram modeled on the presentation reference: 01 Setup + Retrieve, 02 Analyze, 03 Decide, and 04 Record, color-coded by actor (Lavender = Developer, Blue = Coding Agent, Peach = ProjectOS, Green = Human Review, Dashed = MCP calls).</desc>
-  <defs>
-    <pattern id="bp-grid-w" width="28" height="28" patternUnits="userSpaceOnUse">
-      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
-    </pattern>
-    <style>
-      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
-      .b-dev { fill: #EDE9FE; stroke: #8B7EC8; stroke-width: 1.75; }
-      .b-agent { fill: #DBEAFE; stroke: #5B8AC6; stroke-width: 1.75; }
-      .b-pos { fill: #F9E3D8; stroke: #C9866B; stroke-width: 1.75; }
-      .b-rev { fill: #DCFCE7; stroke: #5E9E78; stroke-width: 1.75; }
-      .t-col { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 800; }
-      .t-head { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .t-body { fill: #1E293B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 500; }
-      .t-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .w-solid { fill: none; stroke: #334155; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
-      .w-mcp { fill: none; stroke: #334155; stroke-width: 2.25; stroke-dasharray: 6 4; stroke-linecap: round; stroke-linejoin: round; }
-      .w-approve { fill: none; stroke: #2F7D4E; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-      .w-reject { fill: none; stroke: #B8564B; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
-      .w-redesign { fill: none; stroke: #7C58A6; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
-    </style>
-    <marker id="m-s" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#334155"/>
-    </marker>
-    <marker id="m-ok" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#2F7D4E"/>
-    </marker>
-    <marker id="m-no" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#B8564B"/>
-    </marker>
-    <marker id="m-re" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#7C58A6"/>
-    </marker>
-  </defs>
-
-  <rect x="2" y="2" width="1116" height="426" rx="16" class="canvas"/>
-  <rect x="4" y="4" width="1112" height="422" rx="14" fill="url(#bp-grid-w)"/>
-
-  <!-- ========================================================= -->
-  <!-- COLUMN 1: 01 SETUP + RETRIEVE                             -->
-  <!-- ========================================================= -->
-  <text x="134" y="38" text-anchor="middle" class="t-col" font-size="16" letter-spacing="0.5">01 SETUP + RETRIEVE</text>
-
-  <!-- 1A: Connect repo + MCP -->
-  <g transform="translate(32, 54)">
-    <rect x="0" y="0" width="204" height="62" rx="9" class="b-dev"/>
-    <text x="102" y="27" text-anchor="middle" class="t-head" font-size="13">Connect repo + MCP</text>
-    <text x="102" y="45" text-anchor="middle" class="t-body" font-size="12">Scan dependencies</text>
-  </g>
-
-  <line x1="134" y1="116" x2="134" y2="136" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- 1B: Project Brain -->
-  <g transform="translate(32, 140)">
-    <rect x="0" y="0" width="204" height="62" rx="9" class="b-pos"/>
-    <text x="102" y="27" text-anchor="middle" class="t-head" font-size="13">Project Brain</text>
-    <text x="102" y="45" text-anchor="middle" class="t-body" font-size="12">Human-approved context</text>
-  </g>
-
-  <line x1="134" y1="202" x2="134" y2="222" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- 1C: Request change -->
-  <g transform="translate(32, 226)">
-    <rect x="0" y="0" width="204" height="66" rx="9" class="b-agent"/>
-    <text x="102" y="27" text-anchor="middle" class="t-head" font-size="13">Request change</text>
-    <text x="102" y="45" text-anchor="middle" class="t-body" font-size="11.5">Agent retrieves context via MCP</text>
-  </g>
-
-  <!-- Dashed MCP Call from 1C -> 2A -->
-  <path d="M 236 259 L 258 259 L 258 85 L 282 85" class="w-mcp" marker-end="url(#m-s)"/>
-
-  <!-- ========================================================= -->
-  <!-- COLUMN 2: 02 ANALYZE                                      -->
-  <!-- ========================================================= -->
-  <text x="392" y="38" text-anchor="middle" class="t-col" font-size="16" letter-spacing="0.5">02 ANALYZE</text>
-
-  <!-- 2A: Change Impact Intelligence -->
-  <g transform="translate(288, 54)">
-    <rect x="0" y="0" width="208" height="68" rx="9" class="b-pos"/>
-    <text x="104" y="23" text-anchor="middle" class="t-head" font-size="13">Change Impact Intelligence</text>
-    <text x="104" y="41" text-anchor="middle" class="t-body" font-size="11.5">Files, 2-hop dependencies,</text>
-    <text x="104" y="56" text-anchor="middle" class="t-body" font-size="11.5">and related decisions</text>
-  </g>
-
-  <line x1="392" y1="122" x2="392" y2="142" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- 2B: Impact report -->
-  <g transform="translate(288, 146)">
-    <rect x="0" y="0" width="208" height="82" rx="9" class="b-pos"/>
-    <text x="104" y="24" text-anchor="middle" class="t-head" font-size="13">Impact report</text>
-    <text x="104" y="43" text-anchor="middle" class="t-body" font-size="11.5">Verified AST edges vs. AI</text>
-    <text x="104" y="59" text-anchor="middle" class="t-body" font-size="11.5">predictions &amp; decision conflicts</text>
-  </g>
-
-  <!-- 2C: Keep decision / Revise and re-analyze -->
-  <g transform="translate(288, 314)">
-    <rect x="0" y="0" width="208" height="66" rx="9" class="b-agent"/>
-    <text x="104" y="27" text-anchor="middle" class="t-head" font-size="13">Keep decision</text>
-    <text x="104" y="45" text-anchor="middle" class="t-body" font-size="11.5">Revise plan and re-analyze</text>
-  </g>
-
-  <!-- Connector 2B -> 3A -->
-  <path d="M 496 187 L 522 187 L 522 76 L 570 76" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- ========================================================= -->
-  <!-- COLUMN 3: 03 DECIDE                                       -->
-  <!-- ========================================================= -->
-  <text x="680" y="38" text-anchor="middle" class="t-col" font-size="16" letter-spacing="0.5">03 DECIDE</text>
-
-  <!-- 3A: Human review: Change or add a decision? -->
-  <g transform="translate(576, 54)">
-    <rect x="0" y="0" width="208" height="66" rx="9" class="b-rev"/>
-    <text x="104" y="24" text-anchor="middle" class="t-head" font-size="13">Human review:</text>
-    <text x="104" y="42" text-anchor="middle" class="t-body" font-size="11.5">Change or add a decision?</text>
-  </g>
-
-  <!-- Redesign path from 3A -> 2C -->
-  <path d="M 576 102 L 542 102 L 542 336 L 501 336" class="w-redesign" marker-end="url(#m-re)"/>
-  <text x="536" y="218" text-anchor="end" class="t-label" font-size="11.5" fill="#7C58A6">Redesign</text>
-
-  <!-- New / changed arrow 3A -> 3B -->
-  <line x1="680" y1="120" x2="680" y2="146" class="w-solid" marker-end="url(#m-s)"/>
-  <text x="688" y="137" class="t-label" font-size="11" fill="#475569">New / changed</text>
-
-  <!-- 3B: Submit pending proposal via MCP -->
-  <g transform="translate(576, 150)">
-    <rect x="0" y="0" width="208" height="62" rx="9" class="b-agent"/>
-    <text x="104" y="25" text-anchor="middle" class="t-head" font-size="12.5">Submit pending proposal</text>
-    <text x="104" y="43" text-anchor="middle" class="t-body" font-size="11.5">with rationale via MCP</text>
-  </g>
-
-  <line x1="680" y1="212" x2="680" y2="232" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- 3C: Human approves? ProjectOS dashboard -->
-  <g transform="translate(576, 236)">
-    <rect x="0" y="0" width="208" height="58" rx="9" class="b-rev"/>
-    <text x="104" y="24" text-anchor="middle" class="t-head" font-size="12.5">Human approves?</text>
-    <text x="104" y="42" text-anchor="middle" class="t-body" font-size="11.5">ProjectOS dashboard (P0)</text>
-  </g>
-
-  <!-- Reject path from 3C -> 2C -->
-  <path d="M 576 265 L 556 265 L 556 358 L 501 358" class="w-reject" marker-end="url(#m-no)"/>
-  <text x="550" y="374" text-anchor="end" class="t-label" font-size="11.5" fill="#B8564B">Reject</text>
-
-  <!-- Approve arrow 3C -> 3D -->
-  <line x1="680" y1="294" x2="680" y2="314" class="w-approve" marker-end="url(#m-ok)"/>
-  <text x="688" y="308" class="t-label" font-size="11" fill="#2F7D4E">Approve</text>
-
-  <!-- 3D: Save approved decision -->
-  <g transform="translate(576, 318)">
-    <rect x="0" y="0" width="208" height="62" rx="9" class="b-pos"/>
-    <text x="104" y="25" text-anchor="middle" class="t-head" font-size="12.5">Save approved decision</text>
-    <text x="104" y="43" text-anchor="middle" class="t-body" font-size="11.5">Supersede old if applicable</text>
-  </g>
-
-  <!-- ========================================================= -->
-  <!-- COLUMN 4: 04 RECORD                                       -->
-  <!-- ========================================================= -->
-  <text x="984" y="38" text-anchor="middle" class="t-col" font-size="16" letter-spacing="0.5">04 RECORD</text>
-
-  <!-- No decision change arrow 3A -> 4A -->
-  <line x1="784" y1="78" x2="876" y2="78" class="w-approve" marker-end="url(#m-ok)"/>
-  <text x="830" y="70" text-anchor="middle" class="t-label" font-size="10.5" fill="#2F7D4E">No decision change</text>
-
-  <!-- Dashed MCP resumption from 3D -> 4A -->
-  <path d="M 784 349 L 834 349 L 834 102 L 876 102" class="w-mcp" marker-end="url(#m-s)"/>
-
-  <!-- 4A: Agent implements reviewed plan -->
-  <g transform="translate(882, 54)">
-    <rect x="0" y="0" width="204" height="62" rx="9" class="b-agent"/>
-    <text x="102" y="26" text-anchor="middle" class="t-head" font-size="13">Agent implements</text>
-    <text x="102" y="44" text-anchor="middle" class="t-body" font-size="12">reviewed plan</text>
-  </g>
-
-  <line x1="984" y1="116" x2="984" y2="140" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- 4B: Developer reviews, tests and commits -->
-  <g transform="translate(882, 144)">
-    <rect x="0" y="0" width="204" height="62" rx="9" class="b-dev"/>
-    <text x="102" y="26" text-anchor="middle" class="t-head" font-size="13">Developer reviews,</text>
-    <text x="102" y="44" text-anchor="middle" class="t-body" font-size="12">tests and commits</text>
-  </g>
-
-  <line x1="984" y1="206" x2="984" y2="230" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- 4C: AI Git: explicit link -->
-  <g transform="translate(882, 234)">
-    <rect x="0" y="0" width="204" height="62" rx="9" class="b-pos"/>
-    <text x="102" y="26" text-anchor="middle" class="t-head" font-size="13">AI Git: explicit link</text>
-    <text x="102" y="44" text-anchor="middle" class="t-body" font-size="12">Decision ID ↔ commit</text>
-  </g>
-
-  <line x1="984" y1="296" x2="984" y2="314" class="w-solid" marker-end="url(#m-s)"/>
-
-  <!-- 4D: Inspect WHY / history -->
-  <g transform="translate(882, 318)">
-    <rect x="0" y="0" width="204" height="68" rx="9" class="b-pos"/>
-    <text x="102" y="23" text-anchor="middle" class="t-head" font-size="12.5">Inspect WHY / history</text>
-    <text x="102" y="40" text-anchor="middle" class="t-body" font-size="11">Next agent retrieves</text>
-    <text x="102" y="55" text-anchor="middle" class="t-body" font-size="11">updated context via MCP</text>
-  </g>
-
-  <!-- ========================================================= -->
-  <!-- BOTTOM-LEFT COLOR KEY LEGEND                              -->
-  <!-- ========================================================= -->
-  <g transform="translate(32, 314)">
-    <rect x="0" y="0" width="14" height="14" rx="3" class="b-dev"/>
-    <text x="22" y="12" class="t-label" font-size="12" fill="#5B4B9E">Lavender: Developer</text>
-
-    <rect x="0" y="22" width="14" height="14" rx="3" class="b-agent"/>
-    <text x="22" y="34" class="t-label" font-size="12" fill="#2D5A88">Blue: Coding agent</text>
-
-    <rect x="0" y="44" width="14" height="14" rx="3" class="b-pos"/>
-    <text x="22" y="56" class="t-label" font-size="12" fill="#8C4A32">Peach: ProjectOS</text>
-
-    <rect x="0" y="66" width="14" height="14" rx="3" class="b-rev"/>
-    <text x="22" y="78" class="t-label" font-size="12" fill="#276749">Green: Human review</text>
-
-    <line x1="164" y1="73" x2="196" y2="73" class="w-mcp"/>
-    <text x="204" y="78" class="t-label" font-size="12" fill="#1E293B">Dashed: MCP calls</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1080" width="1000" height="1080" role="img" aria-labelledby="t-end-to-end-workflow d-end-to-end-workflow">
+<title id="t-end-to-end-workflow">Workflow, part 1 — Setup, Retrieve and Analyze</title>
+<desc id="d-end-to-end-workflow">Stage 01: register the project and bind its repository, connect the coding agent through MCP and discover the seven tools, record human-approved baseline decisions if none exist, then retrieve approved context with get_decisions. Stage 02: the developer requests a change, the agent selects reliable starting files or symbols (or asks for more context), analyze_change traces real dependencies and matches approved decisions, the impact report is persisted, the agent interprets it and optionally records AI predictions separately before continuing to Stage 03.</desc>
+<defs><marker id="arr-end-to-end-workflow" viewBox="0 0 10 10" refX="9.2" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0.8 L9.6,5 L0,9.2 Z" fill="#A9B4B0"/></marker></defs>
+<rect width="1000" height="1080" rx="14" fill="#101413"/>
+<text x="40" y="40" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D7E3DF">Workflow, part 1 — Setup, Retrieve and Analyze</text>
+<rect x="510" y="70" width="450" height="990" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="524" y="92" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">STAGE 02 · ANALYZE</text>
+<rect x="40" y="70" width="450" height="540" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="54" y="92" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">STAGE 01 · SETUP AND RETRIEVE</text>
+<g><rect x="60" y="110" width="240" height="46" rx="23" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="180" y="138.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Start: project repository</text></g>
+<g><rect x="60" y="184" width="240" height="64" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="180" y="212.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Register project</text>
+<text x="180" y="230.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">stable project_id + local path</text></g>
+<g><rect x="60" y="276" width="240" height="64" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="180" y="304.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Connect agent via MCP</text>
+<text x="180" y="322.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">tools/list discovers 7 tools</text></g>
+<g><polygon points="180,360 290,412 180,464 70,412" fill="#FEF3C7" stroke="#E3C77C" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="180" y="407.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">Approved</text>
+<text x="180" y="426.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">decisions exist?</text></g>
+<g><rect x="322" y="384" width="150" height="56" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="397" y="408.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#334155">Record baseline</text>
+<text x="397" y="425.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#4A5A6C">human approves</text></g>
+<g><rect x="60" y="516" width="240" height="64" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="180" y="544.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Retrieve approved context</text>
+<text x="180" y="562.6" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="500" fill="#3D4B5C">get_decisions</text></g>
+<path d="M180,156 L180,184" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M180,248 L180,276" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M180,340 L180,360" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M290,412 L322,412" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M397,440 L397,488 L180,488" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="180" cy="488" r="3.6" fill="#A9B4B0"/>
+<path d="M180,464 L180,516" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M300,548 L500,548 L500,133 L530,133" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<g><rect x="530" y="110" width="240" height="46" rx="23" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="650" y="138.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Developer requests a change</text></g>
+<g><rect x="530" y="184" width="240" height="64" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="650" y="212.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Agent picks starting code</text>
+<text x="650" y="230.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">files or resolvable symbols</text></g>
+<g><polygon points="650,270 760,320 650,370 540,320" fill="#FEF3C7" stroke="#E3C77C" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="650" y="315.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">Reliable</text>
+<text x="650" y="334.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">starting point?</text></g>
+<g><rect x="792" y="292" width="150" height="56" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="867" y="316.2" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#334155">Ask for context</text>
+<text x="867" y="333.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">or report uncertainty</text></g>
+<g><rect x="530" y="398" width="240" height="64" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="650" y="426.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Trace real dependencies</text>
+<text x="650" y="444.4" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="500" fill="#3D4B5C">analyze_change · ts-morph</text></g>
+<g><rect x="530" y="490" width="240" height="64" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="650" y="518.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Match approved decisions</text>
+<text x="650" y="536.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">path-linked, via Express</text></g>
+<g><path d="M530,582 H770 V645 C702.8,659 630.8,631 578,645 C558.8,650 542,650 530,645 Z" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="650" y="610.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Impact report persisted</text>
+<text x="650" y="628.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">e.g. IMP-001 in PostgreSQL</text></g>
+<g><rect x="530" y="682" width="240" height="60" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="650" y="708.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Agent interprets findings</text>
+<text x="650" y="726.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">possible conflicts and effects</text></g>
+<g><polygon points="650,762 760,812 650,862 540,812" fill="#FEF3C7" stroke="#E3C77C" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="650" y="807.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">Share</text>
+<text x="650" y="826.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">predictions?</text></g>
+<g><path d="M530,888 H770 V949 C702.8,963 630.8,935 578,949 C558.8,954 542,954 530,949 Z" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="650" y="914.8" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#334155">record_impact_assessment</text>
+<text x="650" y="932.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">labelled AI predictions</text></g>
+<g><rect x="530" y="990" width="240" height="46" rx="23" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="650" y="1018.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Continue to Stage 03</text></g>
+<path d="M650,156 L650,184" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M650,248 L650,270" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M760,320 L792,320" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M867,292 L867,133 L770,133" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M650,370 L650,398" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M650,462 L650,490" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M650,554 L650,582" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M650,646 L650,682" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M650,742 L650,762" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M650,862 L650,888" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<path d="M760,812 L867,812 L867,972 L650,972" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="650" cy="972" r="3.6" fill="#A9B4B0"/>
+<path d="M650,950 L650,990" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-end-to-end-workflow)"/>
+<rect x="293.4" y="390.0" width="25.1" height="20" rx="4" fill="#101413"/><text x="306" y="404.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">No</text>
+<rect x="187.0" y="466.0" width="31.9" height="20" rx="4" fill="#101413"/><text x="192" y="480.4" text-anchor="start" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">Yes</text>
+<rect x="375.8" y="538.0" width="58.5" height="20" rx="4" fill="#101413"/><text x="405" y="552.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">continue</text>
+<rect x="763.4" y="299.0" width="25.1" height="20" rx="4" fill="#101413"/><text x="776" y="313.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">No</text>
+<rect x="657.0" y="374.0" width="31.9" height="20" rx="4" fill="#101413"/><text x="662" y="388.4" text-anchor="start" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">Yes</text>
+<rect x="657.0" y="865.0" width="31.9" height="20" rx="4" fill="#101413"/><text x="662" y="879.4" text-anchor="start" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">Yes</text>
+<rect x="777.4" y="791.0" width="25.1" height="20" rx="4" fill="#101413"/><text x="790" y="805.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">No</text>
+<rect x="56" y="654" width="26" height="16" rx="8" fill="#DBEAFE" stroke="#9FBDEB"/>
+<text x="94" y="666.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Start, end or actor</text>
+<rect x="56" y="680" width="26" height="16" rx="3" fill="#CCF5E4" stroke="#8ED6B9"/>
+<text x="94" y="692.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Processing step</text>
+<polygon points="69,704 82,714 69,724 56,714" fill="#FEF3C7" stroke="#E3C77C"/>
+<text x="94" y="718.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Decision</text>
+<rect x="56" y="732" width="26" height="16" rx="3" fill="#FCE7F3" stroke="#E4A9C9"/>
+<text x="94" y="744.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Persisted record</text>
 </svg>

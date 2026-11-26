@@ -1,103 +1,86 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 350" width="100%" height="100%" role="img" aria-labelledby="gov-title gov-desc">
-  <title id="gov-title">ProjectOS Human Approval Governance: P0 Dashboard Review vs. P1 Trusted MCP Elicitation</title>
-  <desc id="gov-desc">Warm ivory governance diagram showing how an AI coding agent submits a pending decision proposal via propose_decision, how an authorized human reviews it via the P0 Authenticated Dashboard or P1 Trusted MCP Elicitation, and how fail-closed fallback protects architectural state.</desc>
-  <defs>
-    <pattern id="bp-grid-g" width="28" height="28" patternUnits="userSpaceOnUse">
-      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
-    </pattern>
-    <style>
-      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
-      .panel { fill: #FFFFFF; stroke: #D0C8B8; stroke-width: 1.75; }
-      .b-agent { fill: #DBEAFE; stroke: #5B8AC6; stroke-width: 1.75; }
-      .b-pos { fill: #F9E3D8; stroke: #C9866B; stroke-width: 1.75; }
-      .b-rev { fill: #DCFCE7; stroke: #5E9E78; stroke-width: 1.75; }
-      .b-p1 { fill: #EDE9FE; stroke: #8B7EC8; stroke-width: 1.75; stroke-dasharray: 5 3; }
-      .t-head { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .t-body { fill: #1E293B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 500; }
-      .t-mono { fill: #1E3A5F; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
-      .w-solid { fill: none; stroke: #1E3A5F; stroke-width: 2.25; stroke-linecap: round; }
-      .w-dash { fill: none; stroke: #6D5CAE; stroke-width: 2; stroke-dasharray: 6 4; stroke-linecap: round; }
-    </style>
-    <marker id="mg-n" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#1E3A5F"/>
-    </marker>
-    <marker id="mg-p" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#6D5CAE"/>
-    </marker>
-  </defs>
-
-  <rect x="2" y="2" width="1116" height="346" rx="16" class="canvas"/>
-  <rect x="4" y="4" width="1112" height="342" rx="14" fill="url(#bp-grid-g)"/>
-
-  <text x="36" y="38" class="t-head" font-size="18">Human Approval Governance: Agents Propose, Authorized Humans Decide</text>
-
-  <!-- Step 1: Coding Agent Submits Proposal -->
-  <g transform="translate(36, 62)">
-    <rect x="0" y="0" width="228" height="122" rx="10" class="b-agent"/>
-    <text x="16" y="24" class="t-mono" font-size="10" fill="#2D5A88">1. AGENT PROPOSAL (MCP)</text>
-    <text x="16" y="46" class="t-head" font-size="14.5">propose_decision()</text>
-    <text x="16" y="68" class="t-body" font-size="12">Submits title, statement,</text>
-    <text x="16" y="85" class="t-body" font-size="12">rationale, paths &amp; report ID.</text>
-    <text x="16" y="106" class="t-mono" font-size="10.5" fill="#2D5A88">No approval flag in schema</text>
-  </g>
-
-  <line x1="264" y1="123" x2="298" y2="123" class="w-solid" marker-end="url(#mg-n)"/>
-
-  <!-- Step 2: Saved as Pending in SQLite -->
-  <g transform="translate(304, 62)">
-    <rect x="0" y="0" width="228" height="122" rx="10" class="b-pos"/>
-    <text x="16" y="24" class="t-mono" font-size="10" fill="#8C4A32">2. PERSISTED PENDING</text>
-    <text x="16" y="46" class="t-head" font-size="14.5">Saved as Pending</text>
-    <text x="16" y="68" class="t-body" font-size="12">Assigned ID (DEC-004) &amp;</text>
-    <text x="16" y="85" class="t-body" font-size="12">version in SQLite. Old active</text>
-    <text x="16" y="102" class="t-body" font-size="12">decision remains untouched.</text>
-  </g>
-
-  <!-- Split to P0 Primary Path (Top) and P1 Elicitation Path (Bottom) -->
-  <path d="M 532 102 L 574 102" class="w-solid" marker-end="url(#mg-n)"/>
-  <path d="M 418 184 L 418 248 L 574 248" class="w-dash" marker-end="url(#mg-p)"/>
-
-  <!-- Step 3A (P0 Primary): Authenticated Dashboard Review -->
-  <g transform="translate(580, 54)">
-    <rect x="0" y="0" width="246" height="130" rx="10" class="b-rev"/>
-    <text x="16" y="23" class="t-mono" font-size="10" fill="#276749">3A. P0 PRIMARY REVIEW PATH</text>
-    <text x="16" y="45" class="t-head" font-size="14.5">Authenticated Dashboard</text>
-    <text x="16" y="66" class="t-body" font-size="12">Agent pauses (no polling loop).</text>
-    <text x="16" y="83" class="t-body" font-size="12">Human reviews in React UI via</text>
-    <text x="16" y="100" class="t-body" font-size="12">Express Session &amp; clicks</text>
-    <text x="16" y="117" class="t-mono" font-size="11" fill="#276749">Approve or Reject</text>
-  </g>
-
-  <line x1="826" y1="119" x2="858" y2="119" class="w-solid" marker-end="url(#mg-n)"/>
-
-  <!-- Step 4: Manual Resumption via get_decision_status -->
-  <g transform="translate(864, 54)">
-    <rect x="0" y="0" width="220" height="130" rx="10" class="b-agent"/>
-    <text x="16" y="23" class="t-mono" font-size="10" fill="#2D5A88">4. RESUME AGENT</text>
-    <text x="16" y="45" class="t-head" font-size="14">get_decision_status()</text>
-    <text x="16" y="66" class="t-body" font-size="12">When developer returns,</text>
-    <text x="16" y="83" class="t-body" font-size="12">agent checks status once</text>
-    <text x="16" y="100" class="t-body" font-size="12">and implements exact</text>
-    <text x="16" y="117" class="t-body" font-size="12">approved version.</text>
-  </g>
-
-  <!-- Step 3B (P1 Later Enhancement): Trusted MCP Elicitation -->
-  <g transform="translate(580, 202)">
-    <rect x="0" y="0" width="504" height="118" rx="10" class="b-p1"/>
-    <text x="18" y="23" class="t-mono" font-size="10" fill="#5B4B9E">3B. P1 LATER ENHANCEMENT (AFTER LOCAL CORE GATE) · MCP ELICITATION</text>
-    <text x="18" y="44" class="t-head" font-size="13.5">In-Client Human Review (elicitation/create) + Dashboard Fallback</text>
-    <text x="18" y="65" class="t-body" font-size="11.5">• Client UI (never the LLM) presents the proposal to the human reviewer.</text>
-    <text x="18" y="83" class="t-body" font-size="11.5">• Uses the same backend review service with reviewer-bound verification.</text>
-    <text x="18" y="101" class="t-body" font-size="11.5">• Fail-closed: Cancelled or untrusted → stays pending for Dashboard.</text>
-  </g>
-
-  <!-- Bottom-Left Security Callout -->
-  <g transform="translate(36, 204)">
-    <rect x="0" y="0" width="376" height="116" rx="10" class="panel"/>
-    <text x="16" y="23" class="t-mono" font-size="10" fill="#8C4A32">STRICT AUTHORIZATION BOUNDARY (PB-07)</text>
-    <text x="16" y="44" class="t-body" font-size="11.5">• Scoped agent credentials cannot call review routes</text>
-    <text x="16" y="62" class="t-body" font-size="11.5">• Forged tool args &amp; stale versions are rejected</text>
-    <text x="16" y="80" class="t-body" font-size="11.5">• Routine edits within active rules skip proposals</text>
-    <text x="16" y="98" class="t-body" font-size="11.5">• Atomic supersession preserves predecessor history</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1080" width="1000" height="1080" role="img" aria-labelledby="t-governance-and-evidence d-governance-and-evidence">
+<title id="t-governance-and-evidence">Human approval governance</title>
+<desc id="d-governance-and-evidence">The agent calls propose_decision through the MCP server; Express validates it and persists a pending proposal in PostgreSQL. In P0, the agent receives the proposal ID, version and review link, pauses without polling, and an authorized human reviews in the authenticated dashboard. In planned P1, the server requests human input through MCP elicitation and the client shows the exact proposal; untrusted, cancelled or deferred responses stay pending and fall back to the dashboard. Both channels use the same backend review service inside the human authorization boundary; an ordinary agent credential cannot approve. The outcome is persisted, the agent learns the status, then continues, revises or stays paused.</desc>
+<defs><marker id="arr-governance-and-evidence" viewBox="0 0 10 10" refX="9.2" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0.8 L9.6,5 L0,9.2 Z" fill="#A9B4B0"/></marker></defs>
+<rect width="1000" height="1080" rx="14" fill="#101413"/>
+<text x="40" y="40" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D7E3DF">Human approval governance</text>
+<rect x="200" y="540" width="600" height="116" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="214" y="562" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">HUMAN AUTHORIZATION BOUNDARY</text>
+<rect x="510" y="180" width="450" height="330" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="524" y="202" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">P1 · TRUSTED MCP ELICITATION (PLANNED)</text>
+<rect x="40" y="180" width="450" height="290" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="54" y="202" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">P0 · DASHBOARD-FIRST (PRIMARY)</text>
+<g><rect x="40" y="76" width="180" height="60" rx="12" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="130" y="102.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Coding agent</text>
+<text x="130" y="120.4" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="500" fill="#3D4B5C">propose_decision</text></g>
+<g><rect x="300" y="76" width="260" height="60" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="430" y="102.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Express validates</text>
+<text x="430" y="120.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">Zod · project access · scoped token</text></g>
+<g><path d="M620,80.64 A100,10.64 0 0 1 820,80.64 V135.36 A100,10.64 0 0 1 620,135.36 Z" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5"/><path d="M620,80.64 A100,10.64 0 0 0 820,80.64" fill="none" stroke="#E4A9C9" stroke-width="1.5"/>
+<text x="720" y="109.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">PostgreSQL</text>
+<text x="720" y="127.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">DEC-004 v1 · pending</text></g>
+<path d="M220,106 L300,106" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M560,106 L620,106" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<g><rect x="115" y="214" width="300" height="52" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="265" y="245.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Return ID, version, review link</text></g>
+<g><rect x="115" y="294" width="300" height="56" rx="12" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="265" y="318.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Agent pauses this work</text>
+<text x="265" y="336.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">no polling; the session may end</text></g>
+<g><rect x="115" y="378" width="300" height="56" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="265" y="402.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Human reviews in dashboard</text>
+<text x="265" y="420.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">Express Session · HttpOnly · CSRF</text></g>
+<path d="M430,136 L430,164 L265,164 L265,214" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<circle cx="430" cy="164" r="3.6" fill="#A9B4B0"/>
+<path d="M430,164 L735,164 L735,214" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M265,266 L265,294" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M265,350 L265,378" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<g><rect x="585" y="214" width="300" height="72" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="735" y="238.2" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Server requests human input</text>
+<text x="735" y="255.7" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="500" fill="#3D4B5C">elicitation/create</text>
+<text x="735" y="273.0" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">protocol request, not a tool</text></g>
+<g><rect x="585" y="314" width="300" height="56" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="735" y="338.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Client shows exact proposal</text>
+<text x="735" y="356.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">the model cannot answer it</text></g>
+<g><polygon points="735,392 855,440 735,488 615,440" fill="#FEF3C7" stroke="#E3C77C" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="735" y="435.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#334155">Trusted, explicit</text>
+<text x="735" y="454.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#334155">human response?</text></g>
+<path d="M735,286 L735,314" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M735,370 L735,392" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M615,440 L560,440 L560,406 L415,406" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<g><rect x="240" y="578" width="520" height="62" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="500" y="605.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Backend review service (shared)</text>
+<text x="500" y="623.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">verifies reviewer · exact version · one-time response</text></g>
+<path d="M265,434 L265,578" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M735,488 L735,578" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<g><rect x="30" y="566" width="150" height="74" rx="12" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="105" y="590.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#334155">Agent credential</text>
+<text x="105" y="607.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">approve attempt</text>
+<text x="105" y="625.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">rejected (401/403)</text></g>
+<path d="M180,603 L200,603" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M194,597 L206,609 M206,597 L194,609" stroke="#E8A0A0" stroke-width="2.2" stroke-linecap="round"/>
+<g><path d="M330,686 H670 V747 C574.8,761 472.79999999999995,733 398,747 C370.8,752 347,752 330,747 Z" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="500" y="713.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Outcome persisted</text>
+<text x="500" y="731.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">approved (+ atomic supersession) or rejected</text></g>
+<path d="M500,640 L500,686" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<g><rect x="330" y="786" width="340" height="58" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="500" y="811.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Agent learns persisted status</text>
+<text x="500" y="829.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">P0: get_decision_status · P1: tool result</text></g>
+<path d="M500,748 L500,786" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<g><polygon points="500,872 620,922 500,972 380,922" fill="#FEF3C7" stroke="#E3C77C" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="500" y="917.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">Persisted</text>
+<text x="500" y="936.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#334155">status?</text></g>
+<path d="M500,844 L500,872" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<g><rect x="60" y="898" width="240" height="48" rx="24" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="180" y="927.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Revise or abandon</text></g>
+<g><rect x="700" y="898" width="240" height="48" rx="24" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="820" y="927.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Stay paused</text></g>
+<g><rect x="360" y="1004" width="280" height="48" rx="24" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="500" y="1033.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Continue the reviewed plan</text></g>
+<path d="M380,922 L300,922" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M620,922 L700,922" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<path d="M500,972 L500,1004" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-governance-and-evidence)"/>
+<rect x="231.1" y="82.0" width="57.9" height="20" rx="4" fill="#101413"/><text x="260" y="96.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">via MCP</text>
+<rect x="565.2" y="82.0" width="49.6" height="20" rx="4" fill="#101413"/><text x="590" y="96.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">persist</text>
+<rect x="432.5" y="412.0" width="111.0" height="20" rx="4" fill="#101413"/><text x="488" y="426.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">No: stays pending</text>
+<rect x="742.0" y="520.0" width="31.9" height="20" rx="4" fill="#101413"/><text x="747" y="534.4" text-anchor="start" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">Yes</text>
+<rect x="309.3" y="898.0" width="61.4" height="20" rx="4" fill="#101413"/><text x="340" y="912.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">Rejected</text>
+<rect x="632.3" y="898.0" width="55.5" height="20" rx="4" fill="#101413"/><text x="660" y="912.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">Pending</text>
+<rect x="507.0" y="978.0" width="63.5" height="20" rx="4" fill="#101413"/><text x="512" y="992.4" text-anchor="start" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">Approved</text>
 </svg>
