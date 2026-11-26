@@ -1,75 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 310" width="100%" height="100%" role="img" aria-labelledby="gov-title gov-desc">
-  <title id="gov-title">ProjectOS Human Approval Boundary</title>
-  <desc id="gov-desc">Diagram showing the human approval gate: an AI coding agent submits a pending decision proposal via propose_decision, an authorized human approves or rejects it in the dashboard (P0) or via trusted elicitation (P1), and the agent checks the outcome via get_decision_status.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 350" width="100%" height="100%" role="img" aria-labelledby="gov-title gov-desc">
+  <title id="gov-title">ProjectOS Human Approval Governance: P0 Dashboard Review vs. P1 Trusted MCP Elicitation</title>
+  <desc id="gov-desc">Warm ivory governance diagram showing how an AI coding agent submits a pending decision proposal via propose_decision, how an authorized human reviews it via the P0 Authenticated Dashboard or P1 Trusted MCP Elicitation, and how fail-closed fallback protects architectural state.</desc>
   <defs>
+    <pattern id="bp-grid-g" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
+    </pattern>
     <style>
-      .canvas { fill: #FAF8F5; stroke: #E7E5E4; stroke-width: 2; }
-      .card { fill: #FFFFFF; stroke: #D6D3D1; stroke-width: 1.75; }
-      .card-gate { fill: #ECFDF5; stroke: #059669; stroke-width: 2; }
-      .badge-amber { fill: #FFFBEB; stroke: #F59E0B; stroke-width: 1.25; }
-      .badge-green { fill: #FFFFFF; stroke: #059669; stroke-width: 1.25; }
-      .badge-blue { fill: #EFF6FF; stroke: #BFDBFE; stroke-width: 1.25; }
-      .t-head { fill: #18181B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .t-body { fill: #52525B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 400; }
-      .t-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
-      .line { fill: none; stroke: #52525B; stroke-width: 1.75; }
-      .line-green { fill: none; stroke: #059669; stroke-width: 2; }
+      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
+      .panel { fill: #FFFFFF; stroke: #D0C8B8; stroke-width: 1.75; }
+      .b-agent { fill: #DBEAFE; stroke: #5B8AC6; stroke-width: 1.75; }
+      .b-pos { fill: #F9E3D8; stroke: #C9866B; stroke-width: 1.75; }
+      .b-rev { fill: #DCFCE7; stroke: #5E9E78; stroke-width: 1.75; }
+      .b-p1 { fill: #EDE9FE; stroke: #8B7EC8; stroke-width: 1.75; stroke-dasharray: 5 3; }
+      .t-head { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
+      .t-body { fill: #1E293B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 500; }
+      .t-mono { fill: #1E3A5F; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
+      .w-solid { fill: none; stroke: #1E3A5F; stroke-width: 2.25; stroke-linecap: round; }
+      .w-dash { fill: none; stroke: #6D5CAE; stroke-width: 2; stroke-dasharray: 6 4; stroke-linecap: round; }
     </style>
-    <marker id="ar-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#52525B"/>
+    <marker id="mg-n" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#1E3A5F"/>
     </marker>
-    <marker id="ar-ok" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#059669"/>
+    <marker id="mg-p" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#6D5CAE"/>
     </marker>
   </defs>
 
-  <rect x="2" y="2" width="996" height="306" rx="16" class="canvas"/>
+  <rect x="2" y="2" width="1116" height="346" rx="16" class="canvas"/>
+  <rect x="4" y="4" width="1112" height="342" rx="14" fill="url(#bp-grid-g)"/>
 
-  <!-- Top Section Label -->
-  <text x="44" y="42" class="t-mono" font-size="11.5" fill="#52525B" letter-spacing="0.8">ARCHITECTURAL GOVERNANCE · AGENTS PROPOSE, HUMANS APPROVE</text>
+  <text x="36" y="38" class="t-head" font-size="18">Human Approval Governance: Agents Propose, Authorized Humans Decide</text>
 
-  <!-- Step 1: Agent Submits Pending Proposal -->
-  <g transform="translate(44, 68)">
-    <rect x="0" y="0" width="260" height="164" rx="12" class="card"/>
-    <rect x="20" y="18" width="144" height="24" rx="6" class="badge-amber"/>
-    <text x="92" y="34" text-anchor="middle" class="t-mono" font-size="10.5" fill="#B45309">1. PENDING PROPOSAL</text>
-
-    <text x="20" y="70" class="t-head" font-size="17">Agent Proposes Rule</text>
-    <text x="20" y="94" class="t-mono" font-size="12.5" fill="#2563EB">propose_decision()</text>
-    <text x="20" y="118" class="t-body" font-size="13">Saved as <tspan class="t-mono" font-size="12">pending</tspan> (DEC-004).</text>
-    <text x="20" y="138" class="t-body" font-size="13">Agent pauses; no polling loop.</text>
+  <!-- Step 1: Coding Agent Submits Proposal -->
+  <g transform="translate(36, 62)">
+    <rect x="0" y="0" width="228" height="122" rx="10" class="b-agent"/>
+    <text x="16" y="24" class="t-mono" font-size="10" fill="#2D5A88">1. AGENT PROPOSAL (MCP)</text>
+    <text x="16" y="46" class="t-head" font-size="14.5">propose_decision()</text>
+    <text x="16" y="68" class="t-body" font-size="12">Submits title, statement,</text>
+    <text x="16" y="85" class="t-body" font-size="12">rationale, paths &amp; report ID.</text>
+    <text x="16" y="106" class="t-mono" font-size="10.5" fill="#2D5A88">No approval flag in schema</text>
   </g>
 
-  <line x1="304" y1="150" x2="358" y2="150" class="line" marker-end="url(#ar-g)"/>
+  <line x1="264" y1="123" x2="298" y2="123" class="w-solid" marker-end="url(#mg-n)"/>
 
-  <!-- Step 2: Authorized Human Governance Gate -->
-  <g transform="translate(364, 68)">
-    <rect x="0" y="0" width="272" height="164" rx="12" class="card-gate"/>
-    <rect x="20" y="18" width="176" height="24" rx="6" class="badge-green"/>
-    <text x="108" y="34" text-anchor="middle" class="t-mono" font-size="10.5" fill="#047857">2. HUMAN APPROVAL GATE</text>
-
-    <text x="20" y="70" class="t-head" font-size="17" fill="#064E3B">Human Reviewer Decides</text>
-    <text x="20" y="95" class="t-body" font-size="13" fill="#065F46"><tspan class="t-head" fill="#064E3B">P0 Primary:</tspan> Web Dashboard</text>
-    <text x="20" y="116" class="t-body" font-size="13" fill="#065F46"><tspan class="t-head" fill="#064E3B">P1 Later:</tspan> Trusted Elicitation</text>
-    <text x="20" y="140" class="t-mono" font-size="11.5" fill="#047857">Agent credentials cannot approve</text>
+  <!-- Step 2: Saved as Pending in SQLite -->
+  <g transform="translate(304, 62)">
+    <rect x="0" y="0" width="228" height="122" rx="10" class="b-pos"/>
+    <text x="16" y="24" class="t-mono" font-size="10" fill="#8C4A32">2. PERSISTED PENDING</text>
+    <text x="16" y="46" class="t-head" font-size="14.5">Saved as Pending</text>
+    <text x="16" y="68" class="t-body" font-size="12">Assigned ID (DEC-004) &amp;</text>
+    <text x="16" y="85" class="t-body" font-size="12">version in SQLite. Old active</text>
+    <text x="16" y="102" class="t-body" font-size="12">decision remains untouched.</text>
   </g>
 
-  <line x1="636" y1="150" x2="690" y2="150" class="line-green" marker-end="url(#ar-ok)"/>
+  <!-- Split to P0 Primary Path (Top) and P1 Elicitation Path (Bottom) -->
+  <path d="M 532 102 L 574 102" class="w-solid" marker-end="url(#mg-n)"/>
+  <path d="M 418 184 L 418 248 L 574 248" class="w-dash" marker-end="url(#mg-p)"/>
 
-  <!-- Step 3: Agent Verifies Status & Resumes -->
-  <g transform="translate(696, 68)">
-    <rect x="0" y="0" width="260" height="164" rx="12" class="card"/>
-    <rect x="20" y="18" width="152" height="24" rx="6" class="badge-blue"/>
-    <text x="96" y="34" text-anchor="middle" class="t-mono" font-size="10.5" fill="#1D4ED8">3. VERIFY &amp; RESUME</text>
-
-    <text x="20" y="70" class="t-head" font-size="17">Single Status Check</text>
-    <text x="20" y="94" class="t-mono" font-size="12.5" fill="#2563EB">get_decision_status()</text>
-    <text x="20" y="118" class="t-body" font-size="13">Confirms <tspan class="t-mono" font-size="12">approved</tspan> version</text>
-    <text x="20" y="138" class="t-body" font-size="13">before writing feature code.</text>
+  <!-- Step 3A (P0 Primary): Authenticated Dashboard Review -->
+  <g transform="translate(580, 54)">
+    <rect x="0" y="0" width="246" height="130" rx="10" class="b-rev"/>
+    <text x="16" y="23" class="t-mono" font-size="10" fill="#276749">3A. P0 PRIMARY REVIEW PATH</text>
+    <text x="16" y="45" class="t-head" font-size="14.5">Authenticated Dashboard</text>
+    <text x="16" y="66" class="t-body" font-size="12">Agent pauses (no polling loop).</text>
+    <text x="16" y="83" class="t-body" font-size="12">Human reviews in React UI via</text>
+    <text x="16" y="100" class="t-body" font-size="12">Express Session &amp; clicks</text>
+    <text x="16" y="117" class="t-mono" font-size="11" fill="#276749">Approve or Reject</text>
   </g>
 
-  <!-- Bottom Fail-Closed Caption -->
-  <text x="44" y="272" class="t-body" font-size="13">
-    <tspan class="t-head">Fail-closed guarantee:</tspan> If a review is cancelled, timed out, or untrusted, the proposal remains <tspan class="t-mono" font-size="12">pending</tspan> for dashboard review.
-  </text>
+  <line x1="826" y1="119" x2="858" y2="119" class="w-solid" marker-end="url(#mg-n)"/>
+
+  <!-- Step 4: Manual Resumption via get_decision_status -->
+  <g transform="translate(864, 54)">
+    <rect x="0" y="0" width="220" height="130" rx="10" class="b-agent"/>
+    <text x="16" y="23" class="t-mono" font-size="10" fill="#2D5A88">4. RESUME AGENT</text>
+    <text x="16" y="45" class="t-head" font-size="14">get_decision_status()</text>
+    <text x="16" y="66" class="t-body" font-size="12">When developer returns,</text>
+    <text x="16" y="83" class="t-body" font-size="12">agent checks status once</text>
+    <text x="16" y="100" class="t-body" font-size="12">and implements exact</text>
+    <text x="16" y="117" class="t-body" font-size="12">approved version.</text>
+  </g>
+
+  <!-- Step 3B (P1 Later Enhancement): Trusted MCP Elicitation -->
+  <g transform="translate(580, 202)">
+    <rect x="0" y="0" width="504" height="118" rx="10" class="b-p1"/>
+    <text x="18" y="23" class="t-mono" font-size="10" fill="#5B4B9E">3B. P1 LATER ENHANCEMENT (AFTER LOCAL CORE GATE) · MCP ELICITATION</text>
+    <text x="18" y="44" class="t-head" font-size="13.5">In-Client Human Review (elicitation/create) + Dashboard Fallback</text>
+    <text x="18" y="65" class="t-body" font-size="11.5">• Client UI (never the LLM) presents the proposal to the human reviewer.</text>
+    <text x="18" y="83" class="t-body" font-size="11.5">• Uses the same backend review service with reviewer-bound verification.</text>
+    <text x="18" y="101" class="t-body" font-size="11.5">• Fail-closed: Cancelled or untrusted → stays pending for Dashboard.</text>
+  </g>
+
+  <!-- Bottom-Left Security Callout -->
+  <g transform="translate(36, 204)">
+    <rect x="0" y="0" width="376" height="116" rx="10" class="panel"/>
+    <text x="16" y="23" class="t-mono" font-size="10" fill="#8C4A32">STRICT AUTHORIZATION BOUNDARY (PB-07)</text>
+    <text x="16" y="44" class="t-body" font-size="11.5">• Scoped agent credentials cannot call review routes</text>
+    <text x="16" y="62" class="t-body" font-size="11.5">• Forged tool args &amp; stale versions are rejected</text>
+    <text x="16" y="80" class="t-body" font-size="11.5">• Routine edits within active rules skip proposals</text>
+    <text x="16" y="98" class="t-body" font-size="11.5">• Atomic supersession preserves predecessor history</text>
+  </g>
 </svg>

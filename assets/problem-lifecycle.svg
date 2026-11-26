@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 370" width="100%" height="100%" role="img" aria-labelledby="prob-title prob-desc">
+  <title id="prob-title">Problems in the AI-Assisted Software Development Lifecycle</title>
+  <desc id="prob-desc">Three-column serpentine flowchart showing how engineering knowledge breaks down Before a Change (Context Fragmentation), During Change Planning (Impact Blind Spots), and After a Change (Traceability Gaps).</desc>
+  <defs>
+    <pattern id="bp-grid-p" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
+    </pattern>
+    <style>
+      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
+      .col-1 { fill: #F4E6CF; stroke: #D5BA90; stroke-width: 1.5; }
+      .col-2 { fill: #F7DCD4; stroke: #D8A496; stroke-width: 1.5; }
+      .col-3 { fill: #CEDAD9; stroke: #9AB0AE; stroke-width: 1.5; }
+      .t-title { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 800; }
+      .t-col { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
+      .t-box-b { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
+      .t-box-m { fill: #1E293B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 600; }
+      .arrow { fill: none; stroke: #0F2937; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <marker id="ar-p" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#0F2937"/>
+    </marker>
+  </defs>
+
+  <rect x="2" y="2" width="1116" height="366" rx="16" class="canvas"/>
+  <rect x="4" y="4" width="1112" height="362" rx="14" fill="url(#bp-grid-p)"/>
+
+  <!-- Main Heading -->
+  <text x="560" y="44" text-anchor="middle" class="t-title" font-size="23">
+    Where Architectural Context Breaks Down in AI-Assisted Development
+  </text>
+
+  <!-- ========================================================= -->
+  <!-- COLUMN 1: BEFORE A CHANGE (Warm Sand)                     -->
+  <!-- ========================================================= -->
+  <g transform="translate(56, 72)">
+    <text x="148" y="18" text-anchor="middle" class="t-col" font-size="18">1. Before a Change</text>
+
+    <!-- Box 1A -->
+    <rect x="0" y="36" width="296" height="52" rx="9" class="col-1"/>
+    <text x="148" y="67" text-anchor="middle" class="t-box-b" font-size="15.5">Context Fragmentation</text>
+
+    <line x1="148" y1="90" x2="148" y2="112" class="arrow" marker-end="url(#ar-p)"/>
+
+    <!-- Box 1B -->
+    <rect x="0" y="116" width="296" height="76" rx="9" class="col-1"/>
+    <text x="148" y="144" text-anchor="middle" class="t-box-m" font-size="13.5">New sessions or coding agents forget</text>
+    <text x="148" y="164" text-anchor="middle" class="t-box-m" font-size="13.5">approved decisions, rules &amp; rationale</text>
+
+    <line x1="148" y1="194" x2="148" y2="216" class="arrow" marker-end="url(#ar-p)"/>
+
+    <!-- Box 1C -->
+    <rect x="0" y="220" width="296" height="52" rx="9" class="col-1"/>
+    <text x="148" y="251" text-anchor="middle" class="t-box-b" font-size="15">Inconsistent Implementation</text>
+  </g>
+
+  <!-- Serpentine Connector Column 1 (Bottom) -> Column 2 (Top) -->
+  <path d="M 352 318 L 382 318 Q 392 318 392 308 L 392 144 Q 392 134 402 134 L 407 134" class="arrow" marker-end="url(#ar-p)"/>
+
+  <!-- ========================================================= -->
+  <!-- COLUMN 2: CHANGE PLANNING (Soft Coral / Peach)            -->
+  <!-- ========================================================= -->
+  <g transform="translate(412, 72)">
+    <text x="148" y="18" text-anchor="middle" class="t-col" font-size="18">2. Change Planning</text>
+
+    <!-- Box 2A -->
+    <rect x="0" y="36" width="296" height="52" rx="9" class="col-2"/>
+    <text x="148" y="67" text-anchor="middle" class="t-box-b" font-size="15.5">Impact Blind Spots</text>
+
+    <line x1="148" y1="90" x2="148" y2="112" class="arrow" marker-end="url(#ar-p)"/>
+
+    <!-- Box 2B -->
+    <rect x="0" y="116" width="296" height="76" rx="9" class="col-2"/>
+    <text x="148" y="144" text-anchor="middle" class="t-box-m" font-size="13.5">Indirect code dependencies &amp; existing</text>
+    <text x="148" y="164" text-anchor="middle" class="t-box-m" font-size="13.5">decision conflicts go unnoticed</text>
+
+    <line x1="148" y1="194" x2="148" y2="216" class="arrow" marker-end="url(#ar-p)"/>
+
+    <!-- Box 2C -->
+    <rect x="0" y="220" width="296" height="52" rx="9" class="col-2"/>
+    <text x="148" y="251" text-anchor="middle" class="t-box-b" font-size="15">Unexpected Breakage &amp; Rework</text>
+  </g>
+
+  <!-- Serpentine Connector Column 2 (Bottom) -> Column 3 (Top) -->
+  <path d="M 708 318 L 738 318 Q 748 318 748 308 L 748 144 Q 748 134 758 134 L 763 134" class="arrow" marker-end="url(#ar-p)"/>
+
+  <!-- ========================================================= -->
+  <!-- COLUMN 3: AFTER A CHANGE (Muted Slate-Teal)               -->
+  <!-- ========================================================= -->
+  <g transform="translate(768, 72)">
+    <text x="148" y="18" text-anchor="middle" class="t-col" font-size="18">3. After a Change</text>
+
+    <!-- Box 3A -->
+    <rect x="0" y="36" width="296" height="52" rx="9" class="col-3"/>
+    <text x="148" y="67" text-anchor="middle" class="t-box-b" font-size="15.5">Traceability Gaps</text>
+
+    <line x1="148" y1="90" x2="148" y2="112" class="arrow" marker-end="url(#ar-p)"/>
+
+    <!-- Box 3B -->
+    <rect x="0" y="116" width="296" height="76" rx="9" class="col-3"/>
+    <text x="148" y="144" text-anchor="middle" class="t-box-m" font-size="13.5">Git records diffs &amp; hashes, but the</text>
+    <text x="148" y="164" text-anchor="middle" class="t-box-m" font-size="13.5">approved reason behind changes is lost</text>
+
+    <line x1="148" y1="194" x2="148" y2="216" class="arrow" marker-end="url(#ar-p)"/>
+
+    <!-- Box 3C -->
+    <rect x="0" y="220" width="296" height="52" rx="9" class="col-3"/>
+    <text x="148" y="251" text-anchor="middle" class="t-box-b" font-size="15">Loss of Engineering Knowledge</text>
+  </g>
+</svg>

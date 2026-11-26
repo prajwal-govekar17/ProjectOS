@@ -1,130 +1,223 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 390" width="100%" height="100%" role="img" aria-labelledby="arch-title arch-desc">
-  <title id="arch-title">ProjectOS System Architecture and Boundaries</title>
-  <desc id="arch-desc">Clean architectural diagram showing the local developer environment (Developer, Coding Agent, ProjectOS MCP Server, ts-morph, Git CLI, and Local Repository) connected via REST APIs to the Express 5 Backend, SQLite Database, and React Dashboard.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 460" width="100%" height="100%" role="img" aria-labelledby="arch-title arch-desc">
+  <title id="arch-title">ProjectOS Four-Layer System Architecture and Deployment Boundaries</title>
+  <desc id="arch-desc">Detailed four-layer blueprint architecture showing Layer 01 Developer + Agent (with external LLM), Layer 02 Local MCP Server + Repository (with independent ts-morph and Git CLI adapters), Layer 03 Express 5 Backend + SQLite Database (with Zod and Express Sessions), and Layer 04 React Web Dashboard (with independent views), separated into Local Developer Workstation and Shared Application boundaries.</desc>
   <defs>
+    <pattern id="bp-grid-a" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
+    </pattern>
     <style>
-      .canvas { fill: #FAF8F5; stroke: #E7E5E4; stroke-width: 2; }
-      .zone { fill: #F5F3EF; stroke: #D6D3D1; stroke-width: 1.5; stroke-dasharray: 6 4; }
-      .box { fill: #FFFFFF; stroke: #D6D3D1; stroke-width: 1.75; }
-      .box-blue { fill: #FFFFFF; stroke: #2563EB; stroke-width: 2; }
-      .box-green { fill: #FFFFFF; stroke: #059669; stroke-width: 1.75; }
-      .pill { fill: #EFF6FF; stroke: #BFDBFE; stroke-width: 1; }
-      .pill-green { fill: #ECFDF5; stroke: #A7F3D0; stroke-width: 1; }
-      .t-head { fill: #18181B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .t-body { fill: #52525B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 400; }
-      .t-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
-      .line { fill: none; stroke: #52525B; stroke-width: 1.75; }
-      .line-blue { fill: none; stroke: #2563EB; stroke-width: 2; }
-      .line-green { fill: none; stroke: #059669; stroke-width: 2; }
+      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
+      .zone { fill: #FFFFFF; fill-opacity: 0.7; stroke: #B8B0A0; stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .col { fill: #FFFFFF; stroke: #D0C8B8; stroke-width: 1.75; }
+      .b-lav { fill: #EDE9FE; stroke: #8B7EC8; stroke-width: 1.75; }
+      .b-blue { fill: #DBEAFE; stroke: #5B8AC6; stroke-width: 1.75; }
+      .b-peach { fill: #F9E3D8; stroke: #C9866B; stroke-width: 1.75; }
+      .b-amber { fill: #FEF3C7; stroke: #C89236; stroke-width: 1.75; }
+      .b-sage { fill: #DCFCE7; stroke: #5E9E78; stroke-width: 1.75; }
+      .b-slate { fill: #E2E8F0; stroke: #64748B; stroke-width: 1.75; }
+      .pill-proto { fill: #1E3A5F; }
+      .t-title { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 800; }
+      .t-head { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
+      .t-body { fill: #334155; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 500; }
+      .t-mono { fill: #1E3A5F; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 700; }
+      .w-solid { fill: none; stroke: #1E3A5F; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .w-mcp { fill: none; stroke: #2D5A88; stroke-width: 2.25; stroke-dasharray: 6 4; stroke-linecap: round; }
     </style>
-    <marker id="m-gray" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#52525B"/>
+    <marker id="ma-n" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#1E3A5F"/>
     </marker>
-    <marker id="m-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#2563EB"/>
-    </marker>
-    <marker id="m-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#059669"/>
+    <marker id="ma-m" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#2D5A88"/>
     </marker>
   </defs>
 
-  <rect x="2" y="2" width="996" height="386" rx="16" class="canvas"/>
+  <rect x="2" y="2" width="1116" height="456" rx="16" class="canvas"/>
+  <rect x="4" y="4" width="1112" height="452" rx="14" fill="url(#bp-grid-a)"/>
 
-  <!-- LEFT ZONE: Local Developer Environment -->
-  <rect x="28" y="30" width="490" height="330" rx="12" class="zone"/>
-  <text x="46" y="54" class="t-mono" font-size="11" fill="#52525B" letter-spacing="0.8">LOCAL DEVELOPER WORKSTATION (ALWAYS LOCAL)</text>
+  <!-- Deployment Boundary Containers -->
+  <rect x="22" y="24" width="522" height="412" rx="14" class="zone"/>
+  <text x="38" y="46" class="t-mono" font-size="11" fill="#475569" letter-spacing="0.7">LOCAL DEVELOPER WORKSTATION (ALWAYS LOCAL)</text>
 
-  <!-- Developer + Coding Agent -->
-  <g transform="translate(46, 76)">
-    <rect x="0" y="0" width="180" height="86" rx="10" class="box"/>
-    <text x="16" y="26" class="t-mono" font-size="10" fill="#71717A">IDE / TERMINAL</text>
-    <text x="16" y="48" class="t-head" font-size="15">AI Coding Agent</text>
-    <text x="16" y="68" class="t-body" font-size="12.5">Codex (External LLM)</text>
+  <rect x="576" y="24" width="522" height="412" rx="14" class="zone"/>
+  <text x="592" y="46" class="t-mono" font-size="11" fill="#475569" letter-spacing="0.7">APPLICATION LAYER (P0 LOCAL FIRST · P1 PLANNED AWS EC2 + EBS)</text>
+
+  <!-- ========================================================= -->
+  <!-- LAYER 01: DEVELOPER + AGENT                               -->
+  <!-- ========================================================= -->
+  <g transform="translate(36, 62)">
+    <rect x="0" y="0" width="224" height="358" rx="12" class="col"/>
+    <text x="112" y="26" text-anchor="middle" class="t-title" font-size="13.5">01 DEVELOPER + AGENT</text>
+    <line x1="16" y1="38" x2="208" y2="38" stroke="#E2D9C8"/>
+
+    <!-- Developer -->
+    <g transform="translate(16, 54)">
+      <rect x="0" y="0" width="192" height="76" rx="9" class="b-lav"/>
+      <text x="96" y="24" text-anchor="middle" class="t-head" font-size="13.5">Developer</text>
+      <text x="96" y="43" text-anchor="middle" class="t-body" font-size="11.5">Prompts changes, reviews</text>
+      <text x="96" y="59" text-anchor="middle" class="t-body" font-size="11.5">&amp; approves decisions</text>
+    </g>
+
+    <line x1="112" y1="130" x2="112" y2="152" class="w-solid" marker-end="url(#ma-n)"/>
+
+    <!-- AI Coding Agent -->
+    <g transform="translate(16, 156)">
+      <rect x="0" y="0" width="192" height="84" rx="9" class="b-blue"/>
+      <text x="96" y="24" text-anchor="middle" class="t-head" font-size="13.5">AI Coding Agent</text>
+      <text x="96" y="43" text-anchor="middle" class="t-body" font-size="11.5">Codex (First Target Client)</text>
+      <text x="96" y="61" text-anchor="middle" class="t-body" font-size="11">Calls 7 tools · Edits code</text>
+    </g>
+
+    <line x1="112" y1="240" x2="112" y2="262" class="w-solid" marker-start="url(#ma-n)" marker-end="url(#ma-n)"/>
+
+    <!-- External LLM Reasoning -->
+    <g transform="translate(16, 266)">
+      <rect x="0" y="0" width="192" height="74" rx="9" class="b-slate"/>
+      <text x="96" y="24" text-anchor="middle" class="t-head" font-size="13">External LLM</text>
+      <text x="96" y="42" text-anchor="middle" class="t-body" font-size="11">Runs inside agent client;</text>
+      <text x="96" y="58" text-anchor="middle" class="t-body" font-size="11">no ProjectOS LLM API cost</text>
+    </g>
   </g>
 
-  <!-- ProjectOS MCP Server -->
-  <g transform="translate(296, 76)">
-    <rect x="0" y="0" width="198" height="86" rx="10" class="box-blue"/>
-    <text x="16" y="26" class="t-mono" font-size="10" fill="#2563EB">TYPESCRIPT MCP SDK</text>
-    <text x="16" y="48" class="t-head" font-size="15">ProjectOS MCP Server</text>
-    <text x="16" y="68" class="t-body" font-size="12.5">Exposes 7 ProjectOS tools</text>
+  <!-- ========================================================= -->
+  <!-- LAYER 02: MCP + REPOSITORY                                -->
+  <!-- ========================================================= -->
+  <g transform="translate(294, 62)">
+    <rect x="0" y="0" width="236" height="358" rx="12" class="col"/>
+    <text x="118" y="26" text-anchor="middle" class="t-title" font-size="13.5">02 MCP + REPOSITORY</text>
+    <line x1="16" y1="38" x2="220" y2="38" stroke="#E2D9C8"/>
+
+    <!-- ProjectOS MCP Server -->
+    <g transform="translate(16, 54)">
+      <rect x="0" y="0" width="204" height="82" rx="9" class="b-peach"/>
+      <text x="102" y="24" text-anchor="middle" class="t-head" font-size="13.5">ProjectOS MCP Server</text>
+      <text x="102" y="43" text-anchor="middle" class="t-body" font-size="11.5">Official TypeScript MCP SDK</text>
+      <text x="102" y="61" text-anchor="middle" class="t-body" font-size="11">Exposes 7 tools · No direct DB</text>
+    </g>
+
+    <!-- Independent Local Tools: Git CLI & ts-morph -->
+    <g transform="translate(16, 172)">
+      <rect x="0" y="0" width="96" height="72" rx="9" class="b-amber"/>
+      <text x="48" y="25" text-anchor="middle" class="t-head" font-size="13">ts-morph</text>
+      <text x="48" y="43" text-anchor="middle" class="t-body" font-size="10.5">Static JS/TS</text>
+      <text x="48" y="58" text-anchor="middle" class="t-body" font-size="10.5">2-hop AST</text>
+    </g>
+
+    <g transform="translate(124, 172)">
+      <rect x="0" y="0" width="96" height="72" rx="9" class="b-amber"/>
+      <text x="48" y="25" text-anchor="middle" class="t-head" font-size="13">Git CLI</text>
+      <text x="48" y="43" text-anchor="middle" class="t-body" font-size="10.5">Read-only SHA</text>
+      <text x="48" y="58" text-anchor="middle" class="t-body" font-size="10.5">&amp; changed files</text>
+    </g>
+
+    <!-- Independent arrows from MCP Server to ts-morph and Git CLI -->
+    <line x1="64" y1="136" x2="64" y2="168" class="w-solid" marker-end="url(#ma-n)"/>
+    <line x1="172" y1="136" x2="172" y2="168" class="w-solid" marker-end="url(#ma-n)"/>
+
+    <!-- Local Git Repo -->
+    <g transform="translate(16, 274)">
+      <rect x="0" y="0" width="204" height="66" rx="9" class="b-slate"/>
+      <text x="102" y="25" text-anchor="middle" class="t-head" font-size="13.5">Local Git Repository</text>
+      <text x="102" y="45" text-anchor="middle" class="t-body" font-size="11.5">Source files &amp; local commits</text>
+    </g>
+
+    <line x1="64" y1="244" x2="64" y2="270" class="w-solid" marker-end="url(#ma-n)"/>
+    <line x1="172" y1="244" x2="172" y2="270" class="w-solid" marker-end="url(#ma-n)"/>
   </g>
 
-  <!-- MCP Protocol Arrow -->
-  <line x1="230" y1="119" x2="290" y2="119" class="line-blue" marker-start="url(#m-blue)" marker-end="url(#m-blue)"/>
-  <rect x="241" y="94" width="40" height="18" rx="4" class="pill"/>
-  <text x="261" y="107" text-anchor="middle" class="t-mono" font-size="10" fill="#1D4ED8">MCP</text>
+  <!-- ========================================================= -->
+  <!-- LAYER 03: BACKEND + DATABASE                              -->
+  <!-- ========================================================= -->
+  <g transform="translate(590, 62)">
+    <rect x="0" y="0" width="236" height="358" rx="12" class="col"/>
+    <text x="118" y="26" text-anchor="middle" class="t-title" font-size="13.5">03 BACKEND + DATABASE</text>
+    <line x1="16" y1="38" x2="220" y2="38" stroke="#E2D9C8"/>
 
-  <!-- Independent Local Adapters: ts-morph and Git CLI -->
-  <g transform="translate(296, 198)">
-    <rect x="0" y="0" width="92" height="58" rx="8" class="box"/>
-    <text x="46" y="26" text-anchor="middle" class="t-head" font-size="13">ts-morph</text>
-    <text x="46" y="44" text-anchor="middle" class="t-body" font-size="11">JS/TS AST</text>
+    <!-- Express REST API -->
+    <g transform="translate(16, 54)">
+      <rect x="0" y="0" width="204" height="76" rx="9" class="b-peach"/>
+      <text x="102" y="24" text-anchor="middle" class="t-head" font-size="13.5">Express 5 REST API</text>
+      <text x="102" y="43" text-anchor="middle" class="t-body" font-size="11.5">Node.js · TypeScript</text>
+      <text x="102" y="59" text-anchor="middle" class="t-body" font-size="11">Single authoritative state</text>
+    </g>
+
+    <!-- Zod + Auth & Project Brain Service -->
+    <g transform="translate(16, 166)">
+      <rect x="0" y="0" width="96" height="76" rx="9" class="b-blue"/>
+      <text x="48" y="24" text-anchor="middle" class="t-head" font-size="12.5">Zod + Auth</text>
+      <text x="48" y="42" text-anchor="middle" class="t-body" font-size="10.5">Sessions &amp;</text>
+      <text x="48" y="57" text-anchor="middle" class="t-body" font-size="10.5">scoped tokens</text>
+    </g>
+
+    <g transform="translate(124, 166)">
+      <rect x="0" y="0" width="96" height="76" rx="9" class="b-lav"/>
+      <text x="48" y="24" text-anchor="middle" class="t-head" font-size="12.5">Domain Logic</text>
+      <text x="48" y="42" text-anchor="middle" class="t-body" font-size="10.5">Project Brain</text>
+      <text x="48" y="57" text-anchor="middle" class="t-body" font-size="10.5">&amp; review gate</text>
+    </g>
+
+    <line x1="64" y1="130" x2="64" y2="162" class="w-solid" marker-end="url(#ma-n)"/>
+    <line x1="172" y1="130" x2="172" y2="162" class="w-solid" marker-end="url(#ma-n)"/>
+
+    <!-- SQLite Database -->
+    <g transform="translate(16, 274)">
+      <rect x="0" y="0" width="204" height="66" rx="9" class="b-amber"/>
+      <text x="102" y="25" text-anchor="middle" class="t-head" font-size="13.5">SQLite Database</text>
+      <text x="102" y="45" text-anchor="middle" class="t-body" font-size="11.5">Decisions, reports &amp; Git links</text>
+    </g>
+
+    <line x1="172" y1="242" x2="172" y2="270" class="w-solid" marker-start="url(#ma-n)" marker-end="url(#ma-n)"/>
   </g>
 
-  <g transform="translate(402, 198)">
-    <rect x="0" y="0" width="92" height="58" rx="8" class="box"/>
-    <text x="46" y="26" text-anchor="middle" class="t-head" font-size="13">Git CLI</text>
-    <text x="46" y="44" text-anchor="middle" class="t-body" font-size="11">Commits</text>
+  <!-- ========================================================= -->
+  <!-- LAYER 04: WEB DASHBOARD                                   -->
+  <!-- ========================================================= -->
+  <g transform="translate(860, 62)">
+    <rect x="0" y="0" width="224" height="358" rx="12" class="col"/>
+    <text x="112" y="26" text-anchor="middle" class="t-title" font-size="13.5">04 WEB DASHBOARD</text>
+    <line x1="16" y1="38" x2="208" y2="38" stroke="#E2D9C8"/>
+
+    <!-- React Dashboard Shell -->
+    <g transform="translate(16, 54)">
+      <rect x="0" y="0" width="192" height="64" rx="9" class="b-sage"/>
+      <text x="96" y="24" text-anchor="middle" class="t-head" font-size="13.5">React Dashboard</text>
+      <text x="96" y="44" text-anchor="middle" class="t-body" font-size="10.5">TypeScript · Vite UI</text>
+    </g>
+
+    <!-- 3 Main Feature Views -->
+    <g transform="translate(16, 134)">
+      <rect x="0" y="0" width="192" height="60" rx="9" class="b-lav"/>
+      <text x="96" y="24" text-anchor="middle" class="t-head" font-size="12.5">Project Brain &amp; Review</text>
+      <text x="96" y="43" text-anchor="middle" class="t-body" font-size="11">Human Approve / Reject (P0)</text>
+    </g>
+
+    <g transform="translate(16, 206)">
+      <rect x="0" y="0" width="192" height="60" rx="9" class="b-peach"/>
+      <text x="96" y="24" text-anchor="middle" class="t-head" font-size="12.5">Impact Graph View</text>
+      <text x="96" y="43" text-anchor="middle" class="t-body" font-size="11">React Flow edges &amp; predictions</text>
+    </g>
+
+    <g transform="translate(16, 278)">
+      <rect x="0" y="0" width="192" height="62" rx="9" class="b-slate"/>
+      <text x="96" y="24" text-anchor="middle" class="t-head" font-size="12.5">AI Git Timeline</text>
+      <text x="96" y="43" text-anchor="middle" class="t-body" font-size="10.5">Commit ↔ decision lookup</text>
+    </g>
   </g>
 
-  <!-- Independent Arrows from MCP Server to Adapters -->
-  <line x1="342" y1="162" x2="342" y2="193" class="line" marker-end="url(#m-gray)"/>
-  <line x1="448" y1="162" x2="448" y2="193" class="line" marker-end="url(#m-gray)"/>
+  <!-- ========================================================= -->
+  <!-- INTER-LAYER PROTOCOL BRIDGES                              -->
+  <!-- ========================================================= -->
+  <!-- MCP Bridge (Layer 1 Agent <-> Layer 2 MCP Server) -->
+  <path d="M 244 256 L 276 256 L 276 156 L 306 156" class="w-mcp" marker-start="url(#ma-m)" marker-end="url(#ma-m)"/>
+  <rect x="253" y="194" width="46" height="20" rx="4" class="pill-proto"/>
+  <text x="276" y="208" text-anchor="middle" fill="#FFFFFF" class="t-mono" font-size="10">MCP</text>
 
-  <!-- Local Git Repository -->
-  <g transform="translate(46, 282)">
-    <rect x="0" y="0" width="448" height="58" rx="10" class="box"/>
-    <text x="20" y="26" class="t-head" font-size="14.5">Local Git Repository</text>
-    <text x="20" y="45" class="t-body" font-size="12">Source files and .git history stay on the developer machine</text>
-  </g>
+  <!-- REST Bridge (Layer 2 MCP Server <-> Layer 3 Express API) -->
+  <path d="M 514 156 L 602 156" class="w-solid" marker-start="url(#ma-n)" marker-end="url(#ma-n)"/>
+  <rect x="533" y="130" width="54" height="20" rx="4" class="pill-proto"/>
+  <text x="560" y="144" text-anchor="middle" fill="#FFFFFF" class="t-mono" font-size="10">REST</text>
 
-  <!-- Arrows into Local Repo -->
-  <line x1="342" y1="256" x2="342" y2="277" class="line" marker-end="url(#m-gray)"/>
-  <line x1="448" y1="256" x2="448" y2="277" class="line" marker-end="url(#m-gray)"/>
-  <line x1="136" y1="162" x2="136" y2="277" class="line" marker-end="url(#m-gray)"/>
-  <text x="128" y="224" text-anchor="end" class="t-body" font-size="11.5">Normal edits &amp; git commit</text>
-
-  <!-- RIGHT ZONE: Shared Application Service -->
-  <rect x="572" y="30" width="400" height="330" rx="12" class="zone"/>
-  <text x="590" y="54" class="t-mono" font-size="11" fill="#52525B" letter-spacing="0.8">APPLICATION LAYER (LOCAL FIRST · LATER AWS EC2)</text>
-
-  <!-- Express 5 Backend -->
-  <g transform="translate(592, 76)">
-    <rect x="0" y="0" width="360" height="86" rx="10" class="box"/>
-    <text x="20" y="26" class="t-mono" font-size="10" fill="#2563EB">NODE.JS · EXPRESS 5 · ZOD</text>
-    <text x="20" y="48" class="t-head" font-size="15">Express REST API &amp; Domain Services</text>
-    <text x="20" y="68" class="t-body" font-size="12">Owns project auth and human-only approval rules</text>
-  </g>
-
-  <!-- Bridge: MCP Server <-> Express API -->
-  <line x1="498" y1="119" x2="587" y2="119" class="line-blue" marker-start="url(#m-blue)" marker-end="url(#m-blue)"/>
-  <rect x="520" y="94" width="50" height="18" rx="4" class="pill"/>
-  <text x="545" y="107" text-anchor="middle" class="t-mono" font-size="10" fill="#1D4ED8">REST</text>
-
-  <!-- SQLite Database -->
-  <g transform="translate(592, 198)">
-    <rect x="0" y="0" width="170" height="142" rx="10" class="box"/>
-    <text x="16" y="28" class="t-mono" font-size="10" fill="#71717A">PERSISTENT STORE</text>
-    <text x="16" y="50" class="t-head" font-size="15">SQLite Database</text>
-    <text x="16" y="74" class="t-body" font-size="11.5">• Approved decisions</text>
-    <text x="16" y="94" class="t-body" font-size="11.5">• Impact reports</text>
-    <text x="16" y="114" class="t-body" font-size="11.5">• Git commit links</text>
-  </g>
-
-  <!-- React Dashboard -->
-  <g transform="translate(778, 198)">
-    <rect x="0" y="0" width="174" height="142" rx="10" class="box-green"/>
-    <text x="16" y="28" class="t-mono" font-size="10" fill="#059669">REACT · VITE</text>
-    <text x="16" y="50" class="t-head" font-size="15">Web Dashboard</text>
-    <text x="16" y="74" class="t-body" font-size="11.5">• Decision review</text>
-    <text x="16" y="94" class="t-body" font-size="11.5">• React Flow graph</text>
-    <text x="16" y="114" class="t-body" font-size="11.5">• AI Git timeline</text>
-  </g>
-
-  <!-- Arrows Express <-> SQLite and Express <-> Dashboard -->
-  <line x1="676" y1="166" x2="676" y2="193" class="line" marker-start="url(#m-gray)" marker-end="url(#m-gray)"/>
-  <line x1="866" y1="166" x2="866" y2="193" class="line-green" marker-start="url(#m-green)" marker-end="url(#m-green)"/>
-  <rect x="876" y="171" width="64" height="18" rx="4" class="pill-green"/>
-  <text x="908" y="184" text-anchor="middle" class="t-mono" font-size="9.5" fill="#047857">SESSION</text>
+  <!-- REST Session Bridge (Layer 3 Express API <-> Layer 4 React Dashboard) -->
+  <path d="M 810 148 L 872 148" class="w-solid" marker-start="url(#ma-n)" marker-end="url(#ma-n)"/>
+  <rect x="816" y="122" width="54" height="20" rx="4" class="pill-proto"/>
+  <text x="843" y="136" text-anchor="middle" fill="#FFFFFF" class="t-mono" font-size="10">REST</text>
 </svg>

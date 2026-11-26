@@ -1,106 +1,120 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 330" width="100%" height="100%" role="img" aria-labelledby="tf-title tf-desc">
-  <title id="tf-title">TeamFlow Change Impact Analysis: Verified Code Dependencies vs. AI Predictions</title>
-  <desc id="tf-desc">Editorial diagram of Report IMP-001 in TeamFlow showing the two-hop ts-morph dependency path from taskAssignmentService.ts to taskRoutes.ts, bulkTaskService.ts, and projectOperations.ts alongside decision DEC-001, separated from AI predictions.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 360" width="100%" height="100%" role="img" aria-labelledby="tf-title tf-desc">
+  <title id="tf-title">TeamFlow Change Impact Analysis: Verified Source Dependencies vs. AI Predictions (Report IMP-001)</title>
+  <desc id="tf-desc">Warm ivory diagram of TeamFlow Report IMP-001 showing the 2-hop ts-morph dependency chain from taskAssignmentService.ts to taskRoutes.ts (E-001), bulkTaskService.ts (E-002), and projectOperations.ts (E-003) alongside active rule DEC-001, clearly separated from AI predictions saved via record_impact_assessment.</desc>
   <defs>
+    <pattern id="bp-grid-tf" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
+    </pattern>
     <style>
-      .canvas { fill: #FAF8F5; stroke: #E7E5E4; stroke-width: 2; }
-      .panel-fact { fill: #FFFFFF; stroke: #D6D3D1; stroke-width: 1.75; }
-      .panel-pred { fill: #FFFBEB; stroke: #F59E0B; stroke-width: 1.75; stroke-dasharray: 6 4; }
-      .node { fill: #FFFFFF; stroke: #18181B; stroke-width: 1.75; }
-      .node-dep { fill: #F8FAFC; stroke: #475569; stroke-width: 1.5; }
-      .node-dec { fill: #EFF6FF; stroke: #2563EB; stroke-width: 1.75; }
-      .card-pred { fill: #FFFFFF; stroke: #FCD34D; stroke-width: 1.5; }
-      .t-head { fill: #18181B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .t-body { fill: #52525B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 400; }
-      .t-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
-      .edge { fill: none; stroke: #18181B; stroke-width: 1.75; }
-      .edge-blue { fill: none; stroke: #2563EB; stroke-width: 1.75; }
+      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
+      .panel-v { fill: #FFFFFF; stroke: #D0C8B8; stroke-width: 1.75; }
+      .panel-p { fill: #FEF7EC; stroke: #C89236; stroke-width: 1.75; stroke-dasharray: 6 4; }
+      .b-start { fill: #DBEAFE; stroke: #5B8AC6; stroke-width: 1.75; }
+      .b-dep { fill: #DCFCE7; stroke: #5E9E78; stroke-width: 1.75; }
+      .b-dec { fill: #EDE9FE; stroke: #8B7EC8; stroke-width: 1.75; }
+      .b-pred { fill: #F9E3D8; stroke: #C9866B; stroke-width: 1.75; }
+      .t-head { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
+      .t-body { fill: #1E293B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 500; }
+      .t-mono { fill: #1E3A5F; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
+      .edge { fill: none; stroke: #1E3A5F; stroke-width: 2.25; stroke-linecap: round; }
+      .edge-dec { fill: none; stroke: #6D5CAE; stroke-width: 2.25; stroke-linecap: round; }
     </style>
-    <marker id="ar-dark" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#18181B"/>
+    <marker id="mt-n" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#1E3A5F"/>
     </marker>
-    <marker id="ar-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#2563EB"/>
+    <marker id="mt-d" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#6D5CAE"/>
     </marker>
   </defs>
 
-  <rect x="2" y="2" width="996" height="326" rx="16" class="canvas"/>
+  <rect x="2" y="2" width="1116" height="356" rx="16" class="canvas"/>
+  <rect x="4" y="4" width="1112" height="352" rx="14" fill="url(#bp-grid-tf)"/>
 
-  <!-- LEFT: Verified Repository & Decision Evidence -->
-  <g transform="translate(28, 28)">
-    <rect x="0" y="0" width="628" height="274" rx="12" class="panel-fact"/>
-    <text x="22" y="30" class="t-mono" font-size="11" fill="#059669" letter-spacing="0.6">VERIFIED EVIDENCE (ts-morph AST + PROJECT BRAIN)</text>
+  <!-- ========================================================= -->
+  <!-- LEFT PANEL: VERIFIED REPOSITORY & DECISION EVIDENCE       -->
+  <!-- ========================================================= -->
+  <g transform="translate(28, 26)">
+    <rect x="0" y="0" width="706" height="308" rx="12" class="panel-v"/>
+    <text x="22" y="28" class="t-mono" font-size="11" fill="#276749" letter-spacing="0.6">VERIFIED SOURCE &amp; DECISION EVIDENCE (analyze_change · REPORT IMP-001)</text>
 
-    <!-- 0-Hop Starting File -->
-    <g transform="translate(20, 64)">
-      <rect x="0" y="0" width="204" height="68" rx="8" class="node"/>
-      <text x="12" y="23" class="t-mono" font-size="10" fill="#71717A">STARTING FILE (0-HOP)</text>
-      <text x="12" y="46" class="t-mono" font-size="11" fill="#18181B">taskAssignmentService.ts</text>
+    <!-- Starting File (0-Hop) -->
+    <g transform="translate(22, 62)">
+      <rect x="0" y="0" width="212" height="74" rx="9" class="b-start"/>
+      <text x="14" y="23" class="t-mono" font-size="10" fill="#2D5A88">STARTING CANDIDATE (0-HOP)</text>
+      <text x="14" y="45" class="t-mono" font-size="11.5">taskAssignmentService.ts</text>
+      <text x="14" y="62" class="t-body" font-size="10.5">Chosen by Codex; verified on disk</text>
     </g>
 
     <!-- Linked Decision DEC-001 -->
-    <g transform="translate(20, 176)">
-      <rect x="0" y="0" width="204" height="72" rx="8" class="node-dec"/>
-      <text x="12" y="23" class="t-mono" font-size="10" fill="#2563EB">APPROVED RULE · DEC-001</text>
-      <text x="12" y="44" class="t-head" font-size="12.5" fill="#1E3A8A">Manager-only approval</text>
-      <text x="12" y="61" class="t-body" font-size="11.5" fill="#1E40AF">for task ownership</text>
+    <g transform="translate(22, 184)">
+      <rect x="0" y="0" width="212" height="84" rx="9" class="b-dec"/>
+      <text x="14" y="23" class="t-mono" font-size="10" fill="#5B4B9E">APPROVED RULE · DEC-001</text>
+      <text x="14" y="44" class="t-head" font-size="13">Manager-Only Ownership</text>
+      <text x="14" y="62" class="t-body" font-size="11.5">Only project managers can</text>
+      <text x="14" y="76" class="t-body" font-size="11.5">authorize task reassignment</text>
     </g>
 
-    <!-- Edge DEC-001 -> Starting File -->
-    <line x1="122" y1="176" x2="122" y2="137" class="edge-blue" marker-end="url(#ar-b)"/>
+    <line x1="128" y1="184" x2="128" y2="141" class="edge-dec" marker-end="url(#mt-d)"/>
 
-    <!-- 1-Hop Direct Dependent A: taskRoutes.ts -->
-    <g transform="translate(254, 52)">
-      <rect x="0" y="0" width="164" height="62" rx="8" class="node-dep"/>
-      <text x="14" y="22" class="t-mono" font-size="10" fill="#059669">1-HOP · E-001</text>
-      <text x="14" y="43" class="t-mono" font-size="11.5" fill="#18181B">taskRoutes.ts</text>
+    <!-- 1-Hop Direct Dependent 1: taskRoutes.ts -->
+    <g transform="translate(282, 52)">
+      <rect x="0" y="0" width="184" height="70" rx="9" class="b-dep"/>
+      <text x="14" y="23" class="t-mono" font-size="10" fill="#276749">1-HOP DIRECT · E-001</text>
+      <text x="14" y="44" class="t-mono" font-size="12">taskRoutes.ts</text>
+      <text x="14" y="60" class="t-body" font-size="11">Imports assignment service</text>
     </g>
 
-    <!-- 1-Hop Direct Dependent B: bulkTaskService.ts -->
-    <g transform="translate(254, 146)">
-      <rect x="0" y="0" width="164" height="62" rx="8" class="node-dep"/>
-      <text x="14" y="22" class="t-mono" font-size="10" fill="#059669">1-HOP · E-002</text>
-      <text x="14" y="43" class="t-mono" font-size="11.5" fill="#18181B">bulkTaskService.ts</text>
+    <!-- 1-Hop Direct Dependent 2: bulkTaskService.ts -->
+    <g transform="translate(282, 152)">
+      <rect x="0" y="0" width="184" height="70" rx="9" class="b-dep"/>
+      <text x="14" y="23" class="t-mono" font-size="10" fill="#276749">1-HOP DIRECT · E-002</text>
+      <text x="14" y="44" class="t-mono" font-size="12">bulkTaskService.ts</text>
+      <text x="14" y="60" class="t-body" font-size="11">Imports assignment logic</text>
     </g>
 
     <!-- 2-Hop Indirect Dependent: projectOperations.ts -->
-    <g transform="translate(446, 146)">
-      <rect x="0" y="0" width="162" height="62" rx="8" class="node-dep"/>
-      <text x="12" y="22" class="t-mono" font-size="10" fill="#059669">2-HOP · E-003</text>
-      <text x="12" y="43" class="t-mono" font-size="11" fill="#18181B">projectOperations.ts</text>
+    <g transform="translate(502, 152)">
+      <rect x="0" y="0" width="182" height="70" rx="9" class="b-dep"/>
+      <text x="14" y="23" class="t-mono" font-size="10" fill="#276749">2-HOP INDIRECT · E-003</text>
+      <text x="14" y="44" class="t-mono" font-size="11.5">projectOperations.ts</text>
+      <text x="14" y="60" class="t-body" font-size="11">Imports bulkTaskService.ts</text>
     </g>
 
-    <!-- Arrows between Files -->
-    <path d="M 224 88 L 238 88 L 238 83 L 249 83" class="edge" marker-end="url(#ar-dark)"/>
-    <path d="M 224 112 L 238 112 L 238 177 L 249 177" class="edge" marker-end="url(#ar-dark)"/>
-    <line x1="418" y1="177" x2="441" y2="177" class="edge" marker-end="url(#ar-dark)"/>
+    <!-- Verified AST Edges -->
+    <path d="M 234 87 L 256 87 L 277 87" class="edge" marker-end="url(#mt-n)"/>
+    <path d="M 234 112 L 256 112 L 256 187 L 277 187" class="edge" marker-end="url(#mt-n)"/>
+    <line x1="466" y1="187" x2="497" y2="187" class="edge" marker-end="url(#mt-n)"/>
 
-    <text x="254" y="244" class="t-body" font-size="11.5">
-      Verified dependency ≠ guaranteed edit or breakage
-    </text>
+    <!-- Honest Boundary Caption -->
+    <rect x="282" y="242" width="402" height="44" rx="8" fill="#FBF9F4" stroke="#DFD8C8"/>
+    <text x="296" y="261" class="t-head" font-size="11.5">Honest analysis scope (CI-03):</text>
+    <text x="296" y="277" class="t-body" font-size="10.5">A verified dependency edge does not guarantee a file edit or breakage.</text>
   </g>
 
-  <!-- RIGHT: Separately Stored AI Predictions -->
-  <g transform="translate(676, 28)">
-    <rect x="0" y="0" width="296" height="274" rx="12" class="panel-pred"/>
-    <text x="20" y="30" class="t-mono" font-size="11" fill="#B45309" letter-spacing="0.6">AI PREDICTIONS (SEPARATE)</text>
+  <!-- ========================================================= -->
+  <!-- RIGHT PANEL: SEPARATELY LABELLED AI PREDICTIONS           -->
+  <!-- ========================================================= -->
+  <g transform="translate(754, 26)">
+    <rect x="0" y="0" width="338" height="308" rx="12" class="panel-p"/>
+    <text x="20" y="28" class="t-mono" font-size="11" fill="#8C4A32" letter-spacing="0.5">AI PREDICTIONS (record_impact_assessment)</text>
+    <text x="20" y="46" class="t-body" font-size="11.5">Stored separately; never overwrites AST edges</text>
 
     <!-- Prediction 1 -->
-    <g transform="translate(20, 52)">
-      <rect x="0" y="0" width="256" height="92" rx="8" class="card-pred"/>
-      <text x="14" y="23" class="t-mono" font-size="10" fill="#D97706">HYPOTHESIS · CONFLICT</text>
-      <text x="14" y="44" class="t-head" font-size="13">Conflicts with DEC-001</text>
-      <text x="14" y="64" class="t-body" font-size="12">Auto-reassignment bypasses</text>
-      <text x="14" y="80" class="t-body" font-size="12">manager approval.</text>
+    <g transform="translate(20, 62)">
+      <rect x="0" y="0" width="298" height="104" rx="9" class="b-pred"/>
+      <text x="14" y="23" class="t-mono" font-size="10" fill="#8C4A32">AI PREDICTION · CONFLICT WARNING</text>
+      <text x="14" y="44" class="t-head" font-size="13.5">Potential Conflict with DEC-001</text>
+      <text x="14" y="64" class="t-body" font-size="11.5">Fully automatic reassignment changes</text>
+      <text x="14" y="81" class="t-body" font-size="11.5">ownership without manager approval.</text>
     </g>
 
     <!-- Prediction 2 -->
-    <g transform="translate(20, 158)">
-      <rect x="0" y="0" width="256" height="92" rx="8" class="card-pred"/>
-      <text x="14" y="23" class="t-mono" font-size="10" fill="#D97706">HYPOTHESIS · MISSING UI</text>
-      <text x="14" y="44" class="t-head" font-size="13">Leave-Status Interface</text>
-      <text x="14" y="64" class="t-body" font-size="12">Employees need a way to</text>
-      <text x="14" y="80" class="t-body" font-size="12">mark unavailability.</text>
+    <g transform="translate(20, 182)">
+      <rect x="0" y="0" width="298" height="104" rx="9" class="b-pred"/>
+      <text x="14" y="23" class="t-mono" font-size="10" fill="#8C4A32">AI PREDICTION · WORKFLOW HYPOTHESIS</text>
+      <text x="14" y="44" class="t-head" font-size="13.5">Leave-Status Interface Needed</text>
+      <text x="14" y="64" class="t-body" font-size="11.5">Employees may need an interface to</text>
+      <text x="14" y="81" class="t-body" font-size="11.5">report unavailability for reassignment.</text>
     </g>
   </g>
 </svg>

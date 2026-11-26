@@ -1,79 +1,104 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" width="100%" height="100%" role="img" aria-labelledby="triad-title triad-desc">
-  <title id="triad-title">How ProjectOS Connects Decisions, Code Impact, and Git Commits</title>
-  <desc id="triad-desc">Editorial diagram showing one shared Decision Record connecting Project Brain before coding, Change Impact Intelligence during planning, and AI Git after committing.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 380" width="100%" height="100%" role="img" aria-labelledby="triad-title triad-desc">
+  <title id="triad-title">How Project Brain, Change Impact Intelligence, and AI Git Work Together</title>
+  <desc id="triad-desc">Warm ivory diagram showing how one shared Project Brain decision record in SQLite connects Project Brain (Before a Change), Change Impact Intelligence (During Planning), and AI Git (After Commit), mapped to the 7 ProjectOS MCP tools.</desc>
   <defs>
+    <pattern id="bp-grid-t" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
+    </pattern>
     <style>
-      .canvas { fill: #FAF8F5; stroke: #E7E5E4; stroke-width: 2; }
-      .spine { fill: #FFFFFF; stroke: #18181B; stroke-width: 1.75; }
-      .card { fill: #FFFFFF; stroke: #D6D3D1; stroke-width: 1.75; }
-      .badge-blue { fill: #EFF6FF; stroke: #BFDBFE; stroke-width: 1; }
-      .badge-amber { fill: #FFFBEB; stroke: #FDE68A; stroke-width: 1; }
-      .badge-green { fill: #ECFDF5; stroke: #A7F3D0; stroke-width: 1; }
-      .t-head { fill: #18181B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .t-body { fill: #52525B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 400; }
-      .t-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
-      .conn { fill: none; stroke: #71717A; stroke-width: 1.75; }
-      .conn-dash { fill: none; stroke: #A1A1AA; stroke-width: 1.5; stroke-dasharray: 5 4; }
+      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
+      .spine { fill: #FFFFFF; stroke: #1E3A5F; stroke-width: 2; }
+      .card-1 { fill: #F4E6CF; stroke: #C89236; stroke-width: 1.75; }
+      .card-2 { fill: #F9E3D8; stroke: #C9866B; stroke-width: 1.75; }
+      .card-3 { fill: #CEDAD9; stroke: #5A827E; stroke-width: 1.75; }
+      .sub-pill { fill: #FFFFFF; stroke: #D8D0C0; stroke-width: 1.25; }
+      .t-head { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
+      .t-body { fill: #1E293B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 500; }
+      .t-sub { fill: #475569; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 400; }
+      .t-mono { fill: #1E3A5F; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
+      .arrow { fill: none; stroke: #1E3A5F; stroke-width: 2.25; stroke-linecap: round; }
+      .dash { fill: none; stroke: #2D5A88; stroke-width: 2; stroke-dasharray: 6 4; }
     </style>
-    <marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 2 L 8 5 L 1 8 z" fill="#71717A"/>
+    <marker id="ar-t" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#1E3A5F"/>
+    </marker>
+    <marker id="ar-d" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#2D5A88"/>
     </marker>
   </defs>
 
-  <rect x="2" y="2" width="996" height="316" rx="16" class="canvas"/>
+  <rect x="2" y="2" width="1116" height="376" rx="16" class="canvas"/>
+  <rect x="4" y="4" width="1112" height="372" rx="14" fill="url(#bp-grid-t)"/>
 
   <!-- Top Shared Decision Record Spine -->
-  <g transform="translate(240, 28)">
-    <rect x="0" y="0" width="520" height="58" rx="12" class="spine"/>
-    <circle cx="28" cy="29" r="6" fill="#2563EB"/>
-    <text x="46" y="25" class="t-head" font-size="14.5">One Shared Decision Record</text>
-    <text x="46" y="44" class="t-body" font-size="12.5">Stored once in SQLite · Referenced across every stage</text>
+  <g transform="translate(210, 22)">
+    <rect x="0" y="0" width="700" height="64" rx="12" class="spine"/>
+    <circle cx="28" cy="32" r="7" fill="#2D5A88"/>
+    <text x="48" y="27" class="t-head" font-size="16">One Authoritative Decision Record (SQLite via Express 5)</text>
+    <text x="48" y="48" class="t-mono" font-size="11" fill="#475569">decision_id · version · statement · rationale · status · related_paths</text>
   </g>
 
-  <!-- Vertical Connectors from Shared Record -->
-  <path d="M 350 86 L 185 86 L 185 122" class="conn-dash"/>
-  <path d="M 500 86 L 500 122" class="conn-dash"/>
-  <path d="M 650 86 L 815 86 L 815 122" class="conn-dash"/>
+  <!-- Connectors from Shared Record to 3 Features -->
+  <path d="M 350 86 L 200 86 L 200 116" class="dash" marker-end="url(#ar-d)"/>
+  <path d="M 560 86 L 560 116" class="dash" marker-end="url(#ar-d)"/>
+  <path d="M 770 86 L 920 86 L 920 116" class="dash" marker-end="url(#ar-d)"/>
 
-  <!-- STAGE 1: BEFORE CODING (Project Brain) -->
-  <g transform="translate(45, 126)">
-    <rect x="0" y="0" width="280" height="150" rx="12" class="card"/>
-    <rect x="20" y="18" width="128" height="24" rx="6" class="badge-blue"/>
-    <text x="84" y="34" text-anchor="middle" class="t-mono" font-size="10.5" fill="#1D4ED8">1. BEFORE CODING</text>
+  <!-- ========================================================= -->
+  <!-- FEATURE 1: PROJECT BRAIN                                  -->
+  <!-- ========================================================= -->
+  <g transform="translate(44, 122)">
+    <rect x="0" y="0" width="312" height="188" rx="12" class="card-1"/>
+    <text x="20" y="26" class="t-mono" font-size="10.5" fill="#925E18">01 · BEFORE CODING</text>
+    <text x="20" y="52" class="t-head" font-size="19">Project Brain</text>
+    <text x="20" y="76" class="t-body" font-size="13">Preserves human-approved architectural</text>
+    <text x="20" y="95" class="t-body" font-size="13">decisions, rationale, and file links.</text>
 
-    <text x="20" y="70" class="t-head" font-size="18">Project Brain</text>
-    <text x="20" y="94" class="t-body" font-size="13.5">Retrieve human-approved rules</text>
-    <text x="20" y="113" class="t-body" font-size="13.5">and design rationale.</text>
-    <text x="20" y="136" class="t-mono" font-size="11.5" fill="#2563EB">“What did we already decide?”</text>
+    <rect x="16" y="112" width="280" height="60" rx="8" class="sub-pill"/>
+    <text x="28" y="131" class="t-mono" font-size="10" fill="#64748B">MCP TOOLS</text>
+    <text x="28" y="148" class="t-mono" font-size="11.5">get_decisions · propose_decision</text>
+    <text x="28" y="164" class="t-mono" font-size="11.5">get_decision_status</text>
   </g>
 
-  <!-- Arrow 1 -> 2 -->
-  <line x1="325" y1="201" x2="354" y2="201" class="conn" marker-end="url(#ar)"/>
+  <line x1="356" y1="216" x2="398" y2="216" class="arrow" marker-end="url(#ar-t)"/>
 
-  <!-- STAGE 2: DURING PLANNING (Change Impact Intelligence) -->
-  <g transform="translate(360, 126)">
-    <rect x="0" y="0" width="280" height="150" rx="12" class="card"/>
-    <rect x="20" y="18" width="136" height="24" rx="6" class="badge-amber"/>
-    <text x="88" y="34" text-anchor="middle" class="t-mono" font-size="10.5" fill="#B45309">2. CHANGE PLANNING</text>
+  <!-- ========================================================= -->
+  <!-- FEATURE 2: CHANGE IMPACT INTELLIGENCE                     -->
+  <!-- ========================================================= -->
+  <g transform="translate(404, 122)">
+    <rect x="0" y="0" width="312" height="188" rx="12" class="card-2"/>
+    <text x="20" y="26" class="t-mono" font-size="10.5" fill="#8C4A32">02 · CHANGE PLANNING</text>
+    <text x="20" y="52" class="t-head" font-size="19">Change Impact Intelligence</text>
+    <text x="20" y="76" class="t-body" font-size="13">Traces 2-hop JS/TS dependencies and</text>
+    <text x="20" y="95" class="t-body" font-size="13">separates facts from AI predictions.</text>
 
-    <text x="20" y="70" class="t-head" font-size="18">Change Impact</text>
-    <text x="20" y="94" class="t-body" font-size="13.5">Trace affected files and check</text>
-    <text x="20" y="113" class="t-body" font-size="13.5">for decision conflicts.</text>
-    <text x="20" y="136" class="t-mono" font-size="11.5" fill="#D97706">“What will this change affect?”</text>
+    <rect x="16" y="112" width="280" height="60" rx="8" class="sub-pill"/>
+    <text x="28" y="131" class="t-mono" font-size="10" fill="#64748B">MCP TOOLS</text>
+    <text x="28" y="148" class="t-mono" font-size="11.5">analyze_change</text>
+    <text x="28" y="164" class="t-mono" font-size="11.5">record_impact_assessment</text>
   </g>
 
-  <!-- Arrow 2 -> 3 -->
-  <line x1="640" y1="201" x2="669" y2="201" class="conn" marker-end="url(#ar)"/>
+  <line x1="716" y1="216" x2="758" y2="216" class="arrow" marker-end="url(#ar-t)"/>
 
-  <!-- STAGE 3: AFTER COMMIT (AI Git) -->
-  <g transform="translate(675, 126)">
-    <rect x="0" y="0" width="280" height="150" rx="12" class="card"/>
-    <rect x="20" y="18" width="124" height="24" rx="6" class="badge-green"/>
-    <text x="82" y="34" text-anchor="middle" class="t-mono" font-size="10.5" fill="#047857">3. AFTER COMMIT</text>
+  <!-- ========================================================= -->
+  <!-- FEATURE 3: AI GIT                                         -->
+  <!-- ========================================================= -->
+  <g transform="translate(764, 122)">
+    <rect x="0" y="0" width="312" height="188" rx="12" class="card-3"/>
+    <text x="20" y="26" class="t-mono" font-size="10.5" fill="#2F524F">03 · AFTER COMMIT</text>
+    <text x="20" y="52" class="t-head" font-size="19">AI Git</text>
+    <text x="20" y="76" class="t-body" font-size="13">Links real Git commits &amp; changed paths</text>
+    <text x="20" y="95" class="t-body" font-size="13">to approved decisions via Git CLI.</text>
 
-    <text x="20" y="70" class="t-head" font-size="18">AI Git</text>
-    <text x="20" y="94" class="t-body" font-size="13.5">Link real Git commits back to</text>
-    <text x="20" y="113" class="t-body" font-size="13.5">the approved decision ID.</text>
-    <text x="20" y="136" class="t-mono" font-size="11.5" fill="#059669">“Why was this commit made?”</text>
+    <rect x="16" y="112" width="280" height="60" rx="8" class="sub-pill"/>
+    <text x="28" y="131" class="t-mono" font-size="10" fill="#64748B">MCP TOOLS</text>
+    <text x="28" y="148" class="t-mono" font-size="11.5">link_commit_to_decision</text>
+    <text x="28" y="164" class="t-mono" font-size="11.5">get_git_traceability</text>
   </g>
+
+  <!-- Bottom Return Loop: Cross-Session Continuity -->
+  <path d="M 920 310 L 920 344 L 200 344 L 200 315" class="dash" marker-end="url(#ar-d)"/>
+  <rect x="330" y="330" width="460" height="26" rx="13" fill="#DBEAFE" stroke="#5B8AC6" stroke-width="1.25"/>
+  <text x="560" y="347" text-anchor="middle" class="t-mono" font-size="11" fill="#1E3A5F">
+    Continuous Knowledge Loop: Next agent session recovers updated rules &amp; Git reasons
+  </text>
 </svg>
