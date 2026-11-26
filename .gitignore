@@ -3,7 +3,26 @@
 
 # Internal project docs (not for public repo)
 docs/
-AGENTS.md
+
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local environment, credentials, logs, and database exports
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
+*.log
+*.dump
+*.pgdump
+*.sql
+!/apps/api/migrations/**/*.sql
+!/tests/fixtures/**/*.sql
 
 *:Zone.Identifier
 *:Zone.Identifier:*

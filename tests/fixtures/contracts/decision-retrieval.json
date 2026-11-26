@@ -1,0 +1,42 @@
+{
+  "query": {
+    "decision_id": "DEC-017",
+    "query": "fixture rationale",
+    "related_files": ["lib/fixtureEntry.ts"],
+    "include_history": "true"
+  },
+  "response": {
+    "decisions": [
+      {
+        "decision_id": "DEC-017",
+        "version": 1,
+        "title": "Fixture title",
+        "decision": "Fixture statement.",
+        "rationale": "Stored fixture rationale.",
+        "status": "approved",
+        "provenance": "fixture",
+        "related_paths": ["lib/fixtureEntry.ts"],
+        "related_decision_ids": [],
+        "supersedes_decision_id": null,
+        "created_at": "2026-11-26T12:00:00Z",
+        "updated_at": "2026-11-26T12:00:00Z",
+        "history": [
+          {
+            "version": 1,
+            "status": "approved",
+            "occurred_at": "2026-11-26T12:00:00Z",
+            "reviewer_id": null,
+            "feedback": null,
+            "provenance": "fixture"
+          }
+        ],
+        "history_truncated": false
+      }
+    ],
+    "truncated": false
+  },
+  "repository_verification": {
+    "input": { "repository_identity": "git.example.test/fixtures/retrieval" },
+    "response": { "last_repository_verified_at": "2026-11-26T12:00:00Z" }
+  }
+}
