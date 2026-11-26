@@ -1,104 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 380" width="100%" height="100%" role="img" aria-labelledby="triad-title triad-desc">
-  <title id="triad-title">How Project Brain, Change Impact Intelligence, and AI Git Work Together</title>
-  <desc id="triad-desc">Warm ivory diagram showing how one shared Project Brain decision record in SQLite connects Project Brain (Before a Change), Change Impact Intelligence (During Planning), and AI Git (After Commit), mapped to the 7 ProjectOS MCP tools.</desc>
-  <defs>
-    <pattern id="bp-grid-t" width="28" height="28" patternUnits="userSpaceOnUse">
-      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#EBE5D8" stroke-width="1"/>
-    </pattern>
-    <style>
-      .canvas { fill: #FBF9F4; stroke: #DFD8C8; stroke-width: 2; }
-      .spine { fill: #FFFFFF; stroke: #1E3A5F; stroke-width: 2; }
-      .card-1 { fill: #F4E6CF; stroke: #C89236; stroke-width: 1.75; }
-      .card-2 { fill: #F9E3D8; stroke: #C9866B; stroke-width: 1.75; }
-      .card-3 { fill: #CEDAD9; stroke: #5A827E; stroke-width: 1.75; }
-      .sub-pill { fill: #FFFFFF; stroke: #D8D0C0; stroke-width: 1.25; }
-      .t-head { fill: #0F2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
-      .t-body { fill: #1E293B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 500; }
-      .t-sub { fill: #475569; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 400; }
-      .t-mono { fill: #1E3A5F; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
-      .arrow { fill: none; stroke: #1E3A5F; stroke-width: 2.25; stroke-linecap: round; }
-      .dash { fill: none; stroke: #2D5A88; stroke-width: 2; stroke-dasharray: 6 4; }
-    </style>
-    <marker id="ar-t" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#1E3A5F"/>
-    </marker>
-    <marker id="ar-d" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#2D5A88"/>
-    </marker>
-  </defs>
-
-  <rect x="2" y="2" width="1116" height="376" rx="16" class="canvas"/>
-  <rect x="4" y="4" width="1112" height="372" rx="14" fill="url(#bp-grid-t)"/>
-
-  <!-- Top Shared Decision Record Spine -->
-  <g transform="translate(210, 22)">
-    <rect x="0" y="0" width="700" height="64" rx="12" class="spine"/>
-    <circle cx="28" cy="32" r="7" fill="#2D5A88"/>
-    <text x="48" y="27" class="t-head" font-size="16">One Authoritative Decision Record (SQLite via Express 5)</text>
-    <text x="48" y="48" class="t-mono" font-size="11" fill="#475569">decision_id · version · statement · rationale · status · related_paths</text>
-  </g>
-
-  <!-- Connectors from Shared Record to 3 Features -->
-  <path d="M 350 86 L 200 86 L 200 116" class="dash" marker-end="url(#ar-d)"/>
-  <path d="M 560 86 L 560 116" class="dash" marker-end="url(#ar-d)"/>
-  <path d="M 770 86 L 920 86 L 920 116" class="dash" marker-end="url(#ar-d)"/>
-
-  <!-- ========================================================= -->
-  <!-- FEATURE 1: PROJECT BRAIN                                  -->
-  <!-- ========================================================= -->
-  <g transform="translate(44, 122)">
-    <rect x="0" y="0" width="312" height="188" rx="12" class="card-1"/>
-    <text x="20" y="26" class="t-mono" font-size="10.5" fill="#925E18">01 · BEFORE CODING</text>
-    <text x="20" y="52" class="t-head" font-size="19">Project Brain</text>
-    <text x="20" y="76" class="t-body" font-size="13">Preserves human-approved architectural</text>
-    <text x="20" y="95" class="t-body" font-size="13">decisions, rationale, and file links.</text>
-
-    <rect x="16" y="112" width="280" height="60" rx="8" class="sub-pill"/>
-    <text x="28" y="131" class="t-mono" font-size="10" fill="#64748B">MCP TOOLS</text>
-    <text x="28" y="148" class="t-mono" font-size="11.5">get_decisions · propose_decision</text>
-    <text x="28" y="164" class="t-mono" font-size="11.5">get_decision_status</text>
-  </g>
-
-  <line x1="356" y1="216" x2="398" y2="216" class="arrow" marker-end="url(#ar-t)"/>
-
-  <!-- ========================================================= -->
-  <!-- FEATURE 2: CHANGE IMPACT INTELLIGENCE                     -->
-  <!-- ========================================================= -->
-  <g transform="translate(404, 122)">
-    <rect x="0" y="0" width="312" height="188" rx="12" class="card-2"/>
-    <text x="20" y="26" class="t-mono" font-size="10.5" fill="#8C4A32">02 · CHANGE PLANNING</text>
-    <text x="20" y="52" class="t-head" font-size="19">Change Impact Intelligence</text>
-    <text x="20" y="76" class="t-body" font-size="13">Traces 2-hop JS/TS dependencies and</text>
-    <text x="20" y="95" class="t-body" font-size="13">separates facts from AI predictions.</text>
-
-    <rect x="16" y="112" width="280" height="60" rx="8" class="sub-pill"/>
-    <text x="28" y="131" class="t-mono" font-size="10" fill="#64748B">MCP TOOLS</text>
-    <text x="28" y="148" class="t-mono" font-size="11.5">analyze_change</text>
-    <text x="28" y="164" class="t-mono" font-size="11.5">record_impact_assessment</text>
-  </g>
-
-  <line x1="716" y1="216" x2="758" y2="216" class="arrow" marker-end="url(#ar-t)"/>
-
-  <!-- ========================================================= -->
-  <!-- FEATURE 3: AI GIT                                         -->
-  <!-- ========================================================= -->
-  <g transform="translate(764, 122)">
-    <rect x="0" y="0" width="312" height="188" rx="12" class="card-3"/>
-    <text x="20" y="26" class="t-mono" font-size="10.5" fill="#2F524F">03 · AFTER COMMIT</text>
-    <text x="20" y="52" class="t-head" font-size="19">AI Git</text>
-    <text x="20" y="76" class="t-body" font-size="13">Links real Git commits &amp; changed paths</text>
-    <text x="20" y="95" class="t-body" font-size="13">to approved decisions via Git CLI.</text>
-
-    <rect x="16" y="112" width="280" height="60" rx="8" class="sub-pill"/>
-    <text x="28" y="131" class="t-mono" font-size="10" fill="#64748B">MCP TOOLS</text>
-    <text x="28" y="148" class="t-mono" font-size="11.5">link_commit_to_decision</text>
-    <text x="28" y="164" class="t-mono" font-size="11.5">get_git_traceability</text>
-  </g>
-
-  <!-- Bottom Return Loop: Cross-Session Continuity -->
-  <path d="M 920 310 L 920 344 L 200 344 L 200 315" class="dash" marker-end="url(#ar-d)"/>
-  <rect x="330" y="330" width="460" height="26" rx="13" fill="#DBEAFE" stroke="#5B8AC6" stroke-width="1.25"/>
-  <text x="560" y="347" text-anchor="middle" class="t-mono" font-size="11" fill="#1E3A5F">
-    Continuous Knowledge Loop: Next agent session recovers updated rules &amp; Git reasons
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680" role="img" aria-labelledby="t-core-features-triad d-core-features-triad">
+<title id="t-core-features-triad">Three capabilities, one shared decision record</title>
+<desc id="d-core-features-triad">The coding agent calls Project Brain, Change Impact Intelligence and AI Git independently, as needed. Each capability reads or writes shared records through the Express REST API, which stores them in PostgreSQL on Supabase. Future coding sessions retrieve the preserved context.</desc>
+<defs><marker id="arr-core-features-triad" viewBox="0 0 10 10" refX="9.2" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0.8 L9.6,5 L0,9.2 Z" fill="#A9B4B0"/></marker></defs>
+<rect width="1000" height="680" rx="14" fill="#101413"/>
+<text x="40" y="40" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D7E3DF">Three capabilities, one shared decision record</text>
+<rect x="680" y="160" width="280" height="256" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="694" y="182" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">AFTER A NORMAL COMMIT</text>
+<rect x="360" y="160" width="280" height="256" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="374" y="182" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">DURING CHANGE PLANNING</text>
+<rect x="40" y="160" width="280" height="256" rx="10" fill="none" stroke="#56685F" stroke-width="1.4" stroke-dasharray="7 5"/><text x="54" y="182" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="0.8" fill="#9FB2AA">BEFORE IMPLEMENTATION</text>
+<g><rect x="330" y="66" width="340" height="50" rx="12" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="500" y="96.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">MCP-compatible coding agent</text></g>
+<g><rect x="60" y="200" width="240" height="86" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="180" y="230.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Project Brain</text>
+<text x="180" y="248.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">approved decisions,</text>
+<text x="180" y="266.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">rationale and proposals</text></g>
+<g><rect x="60" y="318" width="240" height="66" rx="6" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5"/>
+<text x="180" y="347.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Approved context</text>
+<text x="180" y="365.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">and pending proposals</text></g>
+<path d="M180,286 L180,318" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)"/>
+<g><rect x="380" y="200" width="240" height="86" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="500" y="230.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Change Impact Intelligence</text>
+<text x="500" y="248.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">ts-morph traces real</text>
+<text x="500" y="266.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">code dependencies</text></g>
+<g><rect x="380" y="318" width="240" height="66" rx="6" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5"/>
+<text x="500" y="347.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Impact report</text>
+<text x="500" y="365.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">verified edges + AI predictions</text></g>
+<path d="M500,286 L500,318" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)"/>
+<g><rect x="700" y="200" width="240" height="86" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="820" y="230.8" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">AI Git</text>
+<text x="820" y="248.9" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">links real commits to</text>
+<text x="820" y="266.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">approved decisions</text></g>
+<g><rect x="700" y="318" width="240" height="66" rx="6" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5"/>
+<text x="820" y="347.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Commit ↔ decision links</text>
+<text x="820" y="365.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">with association provenance</text></g>
+<path d="M820,286 L820,318" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)"/>
+<path d="M500,116 L500,140 L180,140 L180,200" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)"/>
+<circle cx="500" cy="140" r="3.6" fill="#A9B4B0"/>
+<path d="M500,140 L500,200" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)"/>
+<path d="M500,140 L820,140 L820,200" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)"/>
+<g><rect x="350" y="450" width="300" height="60" rx="6" fill="#CCF5E4" stroke="#8ED6B9" stroke-width="1.5"/>
+<text x="500" y="476.5" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Express REST API</text>
+<text x="500" y="494.6" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">validation · authorization · lifecycle rules</text></g>
+<path d="M180,384 L180,428 L400,428 L400,450" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)" marker-start="url(#arr-core-features-triad)"/>
+<path d="M500,384 L500,450" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)" marker-start="url(#arr-core-features-triad)"/>
+<path d="M820,384 L820,428 L600,428 L600,450" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)" marker-start="url(#arr-core-features-triad)"/>
+<g><path d="M380,559 A120,11 0 0 1 620,559 V633 A120,11 0 0 1 380,633 Z" fill="#FCE7F3" stroke="#E4A9C9" stroke-width="1.5"/><path d="M380,559 A120,11 0 0 0 620,559" fill="none" stroke="#E4A9C9" stroke-width="1.5"/>
+<text x="500" y="598.0" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">PostgreSQL on Supabase</text>
+<text x="500" y="616.1" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4A5A6C">shared decision records</text></g>
+<path d="M500,510 L500,548" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)" marker-start="url(#arr-core-features-triad)"/>
+<g><rect x="40" y="572" width="240" height="50" rx="25" fill="#DBEAFE" stroke="#9FBDEB" stroke-width="1.5"/>
+<text x="160" y="602.3" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#334155">Future session or teammate</text></g>
+<path d="M350,480 L160,480 L160,572" fill="none" stroke="#A9B4B0" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arr-core-features-triad)"/>
+<rect x="576.6" y="130.0" width="182.7" height="20" rx="4" fill="#101413"/><text x="668" y="144.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">tools/call · invoked as needed</text>
+<rect x="268.3" y="418.0" width="43.5" height="20" rx="4" fill="#101413"/><text x="290" y="432.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">REST</text>
+<rect x="519.0" y="519.0" width="35.1" height="20" rx="4" fill="#101413"/><text x="524" y="533.4" text-anchor="start" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">TLS</text>
+<rect x="172.8" y="470.0" width="164.4" height="20" rx="4" fill="#101413"/><text x="255" y="484.4" text-anchor="middle" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#C2CFCA">preserved context via MCP</text>
+<rect x="720" y="558" width="26" height="16" rx="8" fill="#DBEAFE" stroke="#9FBDEB"/>
+<text x="758" y="570.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Agent, actor or terminal</text>
+<rect x="720" y="584" width="26" height="16" rx="3" fill="#CCF5E4" stroke="#8ED6B9"/>
+<text x="758" y="596.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Processing step</text>
+<polygon points="733,608 746,618 733,628 720,618" fill="#FEF3C7" stroke="#E3C77C"/>
+<text x="758" y="622.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Decision</text>
+<rect x="720" y="636" width="26" height="16" rx="3" fill="#FCE7F3" stroke="#E4A9C9"/>
+<text x="758" y="648.4" font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="12.5" fill="#C2CFCA">Recorded output or store</text>
 </svg>
