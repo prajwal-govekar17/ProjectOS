@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 440" width="100%" height="100%" role="img" aria-labelledby="tf-title tf-desc">
+  <title id="tf-title">TeamFlow Impact Graph &amp; Evidence Separation (Report IMP-001)</title>
+  <desc id="tf-desc">Visual dependency graph for the TeamFlow example project showing the two-hop ts-morph dependency path from starting file taskAssignmentService.ts to direct dependents taskRoutes.ts and bulkTaskService.ts and indirect dependent projectOperations.ts (edges E-001, E-002, E-003), alongside recorded decision DEC-001 and separately labelled AI predictions from record_impact_assessment.</desc>
+  <defs>
+    <style>
+      .bg { fill: #090D16; }
+      .frame { fill: none; stroke: #1E293B; stroke-width: 2; }
+      .zone-verified { fill: #0C1424; stroke: #1E293B; stroke-width: 1.5; }
+      .zone-pred { fill: #171310; stroke: #F59E0B; stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .node-start { fill: #0E2238; stroke: #38BDF8; stroke-width: 2; }
+      .node-dep { fill: #0A2223; stroke: #10B981; stroke-width: 1.75; }
+      .node-dec { fill: #18163A; stroke: #6366F1; stroke-width: 2; }
+      .node-pred { fill: #1F1812; stroke: #F59E0B; stroke-width: 1.5; }
+      .badge-c { fill: #0C4A6E; stroke: #0284C7; stroke-width: 1; }
+      .badge-e { fill: #064E3B; stroke: #059669; stroke-width: 1; }
+      .badge-p { fill: #1E1B4B; stroke: #4F46E5; stroke-width: 1; }
+      .badge-a { fill: #451A03; stroke: #D97706; stroke-width: 1; }
+      .t-main { fill: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-muted { fill: #94A3B8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-dim { fill: #64748B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+      .edge-ver { fill: none; stroke: #10B981; stroke-width: 2.25; }
+      .edge-dec { fill: none; stroke: #818CF8; stroke-width: 2; }
+      .edge-pred { fill: none; stroke: #F59E0B; stroke-width: 1.75; stroke-dasharray: 5 4; }
+    </style>
+    <marker id="e-ver" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="e-dec" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#818CF8"/>
+    </marker>
+    <marker id="e-pred" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+  </defs>
+
+  <rect width="1160" height="440" rx="14" class="bg"/>
+
+  <!-- Top Title Bar -->
+  <text x="28" y="32" class="t-main" font-size="16" font-weight="700">TeamFlow Change Impact Graph &amp; Evidence Separation (Report IMP-001)</text>
+  <text x="28" y="51" class="t-muted" font-size="12">Request: "Automatically reassign unfinished tasks when an employee goes on leave" — Starting candidate: src/services/taskAssignmentService.ts</text>
+
+  <!-- ========================================================= -->
+  <!-- LEFT PANEL: VERIFIED REPOSITORY & DECISION EVIDENCE       -->
+  <!-- ========================================================= -->
+  <g transform="translate(24, 68)">
+    <rect x="0" y="0" width="736" height="348" rx="10" class="zone-verified"/>
+    <text x="18" y="25" fill="#34D399" class="t-mono" font-size="11" font-weight="700">✓ VERIFIED SOURCE &amp; RECORDED DECISION GRAPH (analyze_change + React Flow)</text>
+
+    <!-- Starting Candidate Node -->
+    <g transform="translate(24, 114)">
+      <rect x="0" y="0" width="218" height="96" rx="8" class="node-start"/>
+      <rect x="12" y="10" width="146" height="18" rx="4" class="badge-c"/>
+      <text x="85" y="22" text-anchor="middle" fill="#7DD3FC" class="t-mono" font-size="9" font-weight="700">STARTING CANDIDATE (0-HOP)</text>
+      <text x="12" y="46" class="t-main t-mono" font-size="12" font-weight="700">taskAssignmentService.ts</text>
+      <text x="12" y="64" class="t-muted t-mono" font-size="10">src/services/</text>
+      <text x="12" y="81" class="t-dim" font-size="10">Selected by Codex; verified on disk</text>
+    </g>
+
+    <!-- Recorded Decision Node (DEC-001) -->
+    <g transform="translate(24, 238)">
+      <rect x="0" y="0" width="218" height="92" rx="8" class="node-dec"/>
+      <rect x="12" y="10" width="166" height="18" rx="4" class="badge-p"/>
+      <text x="95" y="22" text-anchor="middle" fill="#C7D2FE" class="t-mono" font-size="9" font-weight="700">PROJECT BRAIN • APPROVED</text>
+      <text x="12" y="44" class="t-main t-mono" font-size="12.5" font-weight="700">DEC-001</text>
+      <text x="12" y="61" class="t-muted" font-size="10.5">Only project managers can</text>
+      <text x="12" y="76" class="t-muted" font-size="10.5">authorize ownership changes.</text>
+    </g>
+
+    <!-- Connector DEC-001 -> taskAssignmentService.ts -->
+    <line x1="133" y1="238" x2="133" y2="214" class="edge-dec" marker-end="url(#e-dec)"/>
+    <rect x="78" y="216" width="110" height="16" rx="3" fill="#1E1B4B"/>
+    <text x="133" y="227" text-anchor="middle" fill="#A5B4FC" class="t-mono" font-size="8.5" font-weight="700">GOVERNS PATH</text>
+
+    <!-- 1-Hop Direct Dependent 1: taskRoutes.ts -->
+    <g transform="translate(308, 48)">
+      <rect x="0" y="0" width="194" height="86" rx="8" class="node-dep"/>
+      <rect x="12" y="10" width="142" height="18" rx="4" class="badge-e"/>
+      <text x="83" y="22" text-anchor="middle" fill="#6EE7B7" class="t-mono" font-size="9" font-weight="700">DIRECT DEPENDENT (1-HOP)</text>
+      <text x="12" y="44" class="t-main t-mono" font-size="12" font-weight="700">taskRoutes.ts</text>
+      <text x="12" y="61" class="t-muted t-mono" font-size="10">src/routes/</text>
+      <text x="12" y="76" class="t-dim" font-size="10">Imports assignment service</text>
+    </g>
+
+    <!-- 1-Hop Direct Dependent 2: bulkTaskService.ts -->
+    <g transform="translate(308, 168)">
+      <rect x="0" y="0" width="194" height="86" rx="8" class="node-dep"/>
+      <rect x="12" y="10" width="142" height="18" rx="4" class="badge-e"/>
+      <text x="83" y="22" text-anchor="middle" fill="#6EE7B7" class="t-mono" font-size="9" font-weight="700">DIRECT DEPENDENT (1-HOP)</text>
+      <text x="12" y="44" class="t-main t-mono" font-size="12" font-weight="700">bulkTaskService.ts</text>
+      <text x="12" y="61" class="t-muted t-mono" font-size="10">src/services/</text>
+      <text x="12" y="76" class="t-dim" font-size="10">Imports assignment functions</text>
+    </g>
+
+    <!-- 2-Hop Indirect Dependent: projectOperations.ts -->
+    <g transform="translate(534, 168)">
+      <rect x="0" y="0" width="184" height="86" rx="8" class="node-dep"/>
+      <rect x="12" y="10" width="154" height="18" rx="4" class="badge-e"/>
+      <text x="89" y="22" text-anchor="middle" fill="#6EE7B7" class="t-mono" font-size="9" font-weight="700">INDIRECT DEPENDENT (2-HOP)</text>
+      <text x="12" y="44" class="t-main t-mono" font-size="12" font-weight="700">projectOperations.ts</text>
+      <text x="12" y="61" class="t-muted t-mono" font-size="10">src/services/</text>
+      <text x="12" y="76" class="t-dim" font-size="10">Imports bulkTaskService.ts</text>
+    </g>
+
+    <!-- Verified Edges (E-001, E-002, E-003) -->
+    <path d="M 242 142 L 274 142 L 274 91 L 304 91" class="edge-ver" marker-end="url(#e-ver)"/>
+    <rect x="252" y="106" width="44" height="18" rx="4" fill="#064E3B" stroke="#10B981"/>
+    <text x="274" y="118" text-anchor="middle" fill="#A7F3D0" class="t-mono" font-size="9" font-weight="700">E-001</text>
+
+    <path d="M 242 182 L 274 182 L 274 211 L 304 211" class="edge-ver" marker-end="url(#e-ver)"/>
+    <rect x="252" y="188" width="44" height="18" rx="4" fill="#064E3B" stroke="#10B981"/>
+    <text x="274" y="200" text-anchor="middle" fill="#A7F3D0" class="t-mono" font-size="9" font-weight="700">E-002</text>
+
+    <path d="M 502 211 L 530 211" class="edge-ver" marker-end="url(#e-ver)"/>
+    <rect x="495" y="182" width="44" height="18" rx="4" fill="#064E3B" stroke="#10B981"/>
+    <text x="517" y="194" text-anchor="middle" fill="#A7F3D0" class="t-mono" font-size="9" font-weight="700">E-003</text>
+
+    <!-- Scope & Honesty Callout inside Graph Panel -->
+    <g transform="translate(308, 274)">
+      <rect x="0" y="0" width="410" height="56" rx="6" fill="#090D16" stroke="#1E293B"/>
+      <text x="12" y="19" fill="#94A3B8" class="t-mono" font-size="9.5" font-weight="700">EVIDENCE BOUNDARY &amp; HONESTY RULE (CI-03 / CI-08)</text>
+      <text x="12" y="35" class="t-muted" font-size="10.5">Chain: projectOperations.ts → bulkTaskService.ts → taskAssignmentService.ts</text>
+      <text x="12" y="49" class="t-dim" font-size="10">Verified dependency ≠ guaranteed edit or breakage. Traversal bounded to 2 hops.</text>
+    </g>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- RIGHT PANEL: SEPARATELY LABELLED AI PREDICTIONS           -->
+  <!-- ========================================================= -->
+  <g transform="translate(780, 68)">
+    <rect x="0" y="0" width="356" height="348" rx="10" class="zone-pred"/>
+    <text x="16" y="25" fill="#FBBF24" class="t-mono" font-size="11" font-weight="700">⚠ AI PREDICTIONS (record_impact_assessment)</text>
+    <text x="16" y="43" class="t-muted" font-size="10.5">Stored separately in SQLite; never overwrites AST edges.</text>
+
+    <!-- Prediction 1: Potential Decision Conflict -->
+    <g transform="translate(16, 58)">
+      <rect x="0" y="0" width="324" height="122" rx="8" class="node-pred"/>
+      <rect x="12" y="10" width="184" height="18" rx="4" class="badge-a"/>
+      <text x="104" y="22" text-anchor="middle" fill="#FDE68A" class="t-mono" font-size="9" font-weight="700">AI PREDICTION • CONFLICT WARNING</text>
+      <text x="12" y="44" class="t-main" font-size="12.5" font-weight="700">Potential Conflict with DEC-001</text>
+      <text x="12" y="63" class="t-muted" font-size="11">"Automatic reassignment may conflict with</text>
+      <text x="12" y="79" class="t-muted" font-size="11">manager-only ownership authorization."</text>
+      <text x="12" y="104" fill="#FBBF24" class="t-mono" font-size="10">Referenced: decision_ids: ["DEC-001"]</text>
+    </g>
+
+    <!-- Prediction 2: Missing UI / Workflow Consequence -->
+    <g transform="translate(16, 196)">
+      <rect x="0" y="0" width="324" height="128" rx="8" class="node-pred"/>
+      <rect x="12" y="10" width="184" height="18" rx="4" class="badge-a"/>
+      <text x="104" y="22" text-anchor="middle" fill="#FDE68A" class="t-mono" font-size="9" font-weight="700">AI PREDICTION • ARCHITECTURAL GAP</text>
+      <text x="12" y="44" class="t-main" font-size="12.5" font-weight="700">Leave-Status Reporting Interface</text>
+      <text x="12" y="63" class="t-muted" font-size="11">"A leave-status interface and manager</text>
+      <text x="12" y="79" class="t-muted" font-size="11">approval prompt may be needed for</text>
+      <text x="12" y="95" class="t-muted" font-size="11">employees to report unavailability."</text>
+      <text x="12" y="114" fill="#94A3B8" class="t-mono" font-size="10">Evidence: Semantic hypothesis (no AST edge)</text>
+    </g>
+  </g>
+
+  <rect x="1" y="1" width="1158" height="438" rx="13" class="frame"/>
+</svg>

@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="100%" height="100%" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">ProjectOS — Architectural Decision Intelligence &amp; Change-Impact Platform for AI Coding Agents</title>
+  <desc id="hero-desc">Visual overview of ProjectOS showing how an external MCP-compatible AI coding agent (such as Codex) connects to the local ProjectOS MCP server and 7-tool surface to unify Project Brain, Change Impact Intelligence, and AI Git around shared architectural decision records.</desc>
+  <defs>
+    <style>
+      .bg { fill: #090D16; }
+      .grid { stroke: #1E293B; stroke-width: 1; stroke-opacity: 0.4; }
+      .frame { fill: none; stroke: #1E293B; stroke-width: 2; }
+      .panel { fill: #0D1424; stroke: #1E293B; stroke-width: 1.5; }
+      .card { fill: #111A2E; stroke: #263554; stroke-width: 1.25; }
+      .card-indigo { fill: #121733; stroke: #6366F1; stroke-width: 1.5; }
+      .card-amber { fill: #1C1712; stroke: #F59E0B; stroke-width: 1.5; }
+      .card-emerald { fill: #0C2324; stroke: #10B981; stroke-width: 1.5; }
+      .card-cyan { fill: #0D2036; stroke: #38BDF8; stroke-width: 1.75; }
+      .pill { fill: #1E293B; stroke: #334155; stroke-width: 1; }
+      .pill-indigo { fill: #1E1B4B; stroke: #4F46E5; stroke-width: 1; }
+      .pill-amber { fill: #451A03; stroke: #D97706; stroke-width: 1; }
+      .pill-emerald { fill: #064E3B; stroke: #059669; stroke-width: 1; }
+      .pill-cyan { fill: #0C4A6E; stroke: #0284C7; stroke-width: 1; }
+      .t-main { fill: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-muted { fill: #94A3B8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-dim { fill: #64748B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+      .w-cyan { fill: none; stroke: #38BDF8; stroke-width: 2; }
+      .w-indigo { fill: none; stroke: #818CF8; stroke-width: 1.75; }
+      .w-amber { fill: none; stroke: #FBBF24; stroke-width: 1.75; }
+      .w-emerald { fill: none; stroke: #34D399; stroke-width: 1.75; }
+      .w-dash { fill: none; stroke: #38BDF8; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    </style>
+
+    <radialGradient id="g-indigo" cx="22%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#090D16" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-cyan" cx="76%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#090D16" stop-opacity="0"/>
+    </radialGradient>
+
+    <marker id="a-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="a-indigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#818CF8"/>
+    </marker>
+    <marker id="a-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FBBF24"/>
+    </marker>
+    <marker id="a-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#34D399"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1200" height="440" rx="16" class="bg"/>
+  <rect width="1200" height="440" rx="16" fill="url(#g-indigo)"/>
+  <rect width="1200" height="440" rx="16" fill="url(#g-cyan)"/>
+
+  <!-- Background Technical Grid -->
+  <g>
+    <line x1="0" y1="70" x2="1200" y2="70" class="grid"/>
+    <line x1="0" y1="220" x2="1200" y2="220" class="grid"/>
+    <line x1="0" y1="370" x2="1200" y2="370" class="grid"/>
+    <line x1="510" y1="0" x2="510" y2="440" class="grid"/>
+    <line x1="850" y1="0" x2="850" y2="440" class="grid"/>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- LEFT COLUMN: Project Identity & Value Proposition         -->
+  <!-- ========================================================= -->
+  <g transform="translate(46, 46)">
+    <!-- Protocol Tag -->
+    <rect x="0" y="0" width="318" height="28" rx="14" class="pill-indigo"/>
+    <circle cx="16" cy="14" r="4" fill="#818CF8"/>
+    <text x="28" y="18" class="t-mono" fill="#C7D2FE" font-size="11" font-weight="700" letter-spacing="0.6">MCP-CENTRIC ARCHITECTURAL INTELLIGENCE</text>
+
+    <!-- Brand Mark + Title -->
+    <g transform="translate(0, 46)">
+      <rect x="0" y="2" width="48" height="48" rx="12" fill="#1E1B4B" stroke="#6366F1" stroke-width="2"/>
+      <circle cx="15" cy="16" r="4" fill="#818CF8"/>
+      <circle cx="33" cy="16" r="4" fill="#FBBF24"/>
+      <circle cx="24" cy="34" r="4" fill="#34D399"/>
+      <line x1="19" y1="16" x2="29" y2="16" stroke="#94A3B8" stroke-width="1.75"/>
+      <line x1="17" y1="20" x2="22" y2="30" stroke="#94A3B8" stroke-width="1.75"/>
+      <line x1="31" y1="20" x2="26" y2="30" stroke="#94A3B8" stroke-width="1.75"/>
+
+      <text x="64" y="40" class="t-main" font-size="44" font-weight="800" letter-spacing="-1">Project<tspan fill="#818CF8">OS</tspan></text>
+    </g>
+
+    <!-- Primary Tagline -->
+    <text x="0" y="132" class="t-main" font-size="18.5" font-weight="700">
+      Approved architectural memory, repository-backed
+    </text>
+    <text x="0" y="157" class="t-main" font-size="18.5" font-weight="700">
+      impact analysis, and Git provenance for coding agents.
+    </text>
+
+    <!-- Explanatory Copy -->
+    <text x="0" y="190" class="t-muted" font-size="13">
+      Works with existing MCP-compatible coding clients (Codex, Claude Code,
+    </text>
+    <text x="0" y="210" class="t-muted" font-size="13">
+      Antigravity) to recover active design rules before coding, trace real JS/TS
+    </text>
+    <text x="0" y="230" class="t-muted" font-size="13">
+      dependencies via ts-morph, and link Git commits to human-approved rationale.
+    </text>
+
+    <!-- Key Architectural Guarantees -->
+    <g transform="translate(0, 254)">
+      <rect x="0" y="0" width="430" height="92" rx="10" class="card"/>
+      <text x="16" y="22" fill="#38BDF8" class="t-mono" font-size="10" font-weight="700">ARCHITECTURAL INVARIANTS</text>
+      <text x="16" y="42" class="t-main" font-size="12">• <tspan font-weight="700" fill="#A5B4FC">7 MCP Tools</tspan> exposing Project Brain, Change Impact &amp; AI Git</text>
+      <text x="16" y="61" class="t-main" font-size="12">• <tspan font-weight="700" fill="#FCD34D">Fact vs. Prediction:</tspan> ts-morph AST edges separated from LLM hypotheses</text>
+      <text x="16" y="80" class="t-main" font-size="12">• <tspan font-weight="700" fill="#6EE7B7">Human-Only Approval:</tspan> Agents propose; authenticated humans approve</text>
+    </g>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- RIGHT COLUMN: Architectural Schematic                     -->
+  <!-- ========================================================= -->
+  <g transform="translate(506, 26)">
+    <rect x="0" y="0" width="664" height="388" rx="12" class="panel"/>
+
+    <!-- Top Schematic Title Bar -->
+    <line x1="0" y1="34" x2="664" y2="34" stroke="#1E293B" stroke-width="1"/>
+    <circle cx="18" cy="17" r="4" fill="#475569"/>
+    <circle cx="32" cy="17" r="4" fill="#475569"/>
+    <circle cx="46" cy="17" r="4" fill="#475569"/>
+    <text x="64" y="21" class="t-dim t-mono" font-size="10.5" font-weight="700">CONTINUOUS DECISION &amp; EVIDENCE LIFECYCLE OVER MCP</text>
+    <text x="515" y="21" fill="#38BDF8" class="t-mono" font-size="10" font-weight="700">SHARED SQLITE STATE</text>
+
+    <!-- Left Zone: Agent + Local Repo Tools -->
+    <g transform="translate(20, 52)">
+      <!-- Coding Agent Card -->
+      <rect x="0" y="0" width="168" height="142" rx="8" class="card"/>
+      <text x="12" y="20" fill="#818CF8" class="t-mono" font-size="9.5" font-weight="700">MCP CLIENT + EXTERNAL LLM</text>
+      <text x="12" y="40" class="t-main" font-size="13.5" font-weight="700">AI Coding Agent</text>
+      <text x="12" y="56" class="t-muted t-mono" font-size="10">Codex (Initial Target)</text>
+      <line x1="12" y1="66" x2="156" y2="66" stroke="#1E293B"/>
+      <text x="12" y="84" class="t-muted" font-size="10.5">• Interprets user prompt</text>
+      <text x="12" y="100" class="t-muted" font-size="10.5">• Selects starting files</text>
+      <text x="12" y="116" class="t-muted" font-size="10.5">• Reasons on conflicts</text>
+      <text x="12" y="132" class="t-muted" font-size="10.5">• Edits code in IDE</text>
+    </g>
+
+    <g transform="translate(20, 212)">
+      <!-- Local Repository Tools Card -->
+      <rect x="0" y="0" width="168" height="122" rx="8" class="card"/>
+      <text x="12" y="20" fill="#FBBF24" class="t-mono" font-size="9.5" font-weight="700">LOCAL REPOSITORY TOOLS</text>
+      <text x="12" y="40" class="t-main t-mono" font-size="12" font-weight="700">ts-morph Engine</text>
+      <text x="12" y="55" class="t-muted" font-size="10">Direct &amp; 2-hop JS/TS AST</text>
+      <line x1="12" y1="66" x2="156" y2="66" stroke="#1E293B"/>
+      <text x="12" y="85" class="t-main t-mono" font-size="12" font-weight="700">Git CLI</text>
+      <text x="12" y="100" class="t-muted" font-size="10">Full SHA, changed files, diffs</text>
+      <text x="12" y="114" fill="#64748B" class="t-mono" font-size="9.5">Independent local adapters</text>
+    </g>
+
+    <!-- Center Zone: ProjectOS MCP Server (7 Tools) -->
+    <g transform="translate(222, 68)">
+      <rect x="0" y="0" width="184" height="252" rx="10" class="card-cyan"/>
+      <rect x="28" y="-11" width="128" height="22" rx="11" fill="#0284C7"/>
+      <text x="92" y="4" text-anchor="middle" class="t-main t-mono" font-size="9.5" font-weight="700">LOCAL MCP SERVER</text>
+
+      <text x="92" y="28" text-anchor="middle" class="t-main" font-size="13.5" font-weight="700">7 Callable MCP Tools</text>
+      <text x="92" y="44" text-anchor="middle" class="t-muted t-mono" font-size="9.5">Official TypeScript MCP SDK</text>
+
+      <!-- 7 Tool Pills -->
+      <rect x="12" y="56" width="160" height="22" rx="4" class="pill-indigo"/>
+      <text x="20" y="71" fill="#C7D2FE" class="t-mono" font-size="9.5" font-weight="600">1. get_decisions</text>
+
+      <rect x="12" y="83" width="160" height="22" rx="4" class="pill-amber"/>
+      <text x="20" y="98" fill="#FDE68A" class="t-mono" font-size="9.5" font-weight="600">2. analyze_change</text>
+
+      <rect x="12" y="110" width="160" height="22" rx="4" class="pill-amber"/>
+      <text x="20" y="125" fill="#FDE68A" class="t-mono" font-size="9.5" font-weight="600">3. record_impact_assessment</text>
+
+      <rect x="12" y="137" width="160" height="22" rx="4" class="pill-indigo"/>
+      <text x="20" y="152" fill="#C7D2FE" class="t-mono" font-size="9.5" font-weight="600">4. propose_decision</text>
+
+      <rect x="12" y="164" width="160" height="22" rx="4" class="pill-indigo"/>
+      <text x="20" y="179" fill="#C7D2FE" class="t-mono" font-size="9.5" font-weight="600">5. get_decision_status</text>
+
+      <rect x="12" y="191" width="160" height="22" rx="4" class="pill-emerald"/>
+      <text x="20" y="206" fill="#A7F3D0" class="t-mono" font-size="9.5" font-weight="600">6. link_commit_to_decision</text>
+
+      <rect x="12" y="218" width="160" height="22" rx="4" class="pill-emerald"/>
+      <text x="20" y="233" fill="#A7F3D0" class="t-mono" font-size="9.5" font-weight="600">7. get_git_traceability</text>
+    </g>
+
+    <!-- Connectors: Left -> Center -->
+    <path d="M 188 122 L 218 122" class="w-cyan" marker-end="url(#a-cyan)" marker-start="url(#a-cyan)"/>
+    <path d="M 188 268 L 205 268 L 205 235 L 218 235" class="w-amber" marker-end="url(#a-amber)"/>
+
+    <!-- Right Zone: Three Core Features + Express/SQLite + React Dashboard -->
+    <!-- Feature 1: Project Brain -->
+    <g transform="translate(442, 48)">
+      <rect x="0" y="0" width="202" height="88" rx="8" class="card-indigo"/>
+      <rect x="12" y="10" width="84" height="18" rx="4" class="pill-indigo"/>
+      <text x="54" y="22" text-anchor="middle" fill="#A5B4FC" class="t-mono" font-size="9" font-weight="700">01 • MEMORY</text>
+      <text x="106" y="22" fill="#34D399" class="t-mono" font-size="9" font-weight="700">HUMAN-APPROVED</text>
+      <text x="12" y="44" class="t-main" font-size="13.5" font-weight="700">Project Brain</text>
+      <text x="12" y="61" class="t-muted" font-size="10.5">Decisions, rationale, related</text>
+      <text x="12" y="75" class="t-muted" font-size="10.5">files &amp; supersession history</text>
+    </g>
+
+    <!-- Feature 2: Change Impact Intelligence -->
+    <g transform="translate(442, 148)">
+      <rect x="0" y="0" width="202" height="88" rx="8" class="card-amber"/>
+      <rect x="12" y="10" width="84" height="18" rx="4" class="pill-amber"/>
+      <text x="54" y="22" text-anchor="middle" fill="#FCD34D" class="t-mono" font-size="9" font-weight="700">02 • IMPACT</text>
+      <text x="106" y="22" fill="#FBBF24" class="t-mono" font-size="9" font-weight="700">REACT FLOW</text>
+      <text x="12" y="44" class="t-main" font-size="13.5" font-weight="700">Change Impact</text>
+      <text x="12" y="61" class="t-muted" font-size="10.5">Verified AST dependency chains</text>
+      <text x="12" y="75" class="t-muted" font-size="10.5">vs. labelled AI predictions</text>
+    </g>
+
+    <!-- Feature 3: AI Git -->
+    <g transform="translate(442, 248)">
+      <rect x="0" y="0" width="202" height="88" rx="8" class="card-emerald"/>
+      <rect x="12" y="10" width="96" height="18" rx="4" class="pill-emerald"/>
+      <text x="60" y="22" text-anchor="middle" fill="#6EE7B7" class="t-mono" font-size="9" font-weight="700">03 • PROVENANCE</text>
+      <text x="116" y="22" fill="#34D399" class="t-mono" font-size="9" font-weight="700">a7c92f1 ↔ DEC</text>
+      <text x="12" y="44" class="t-main" font-size="13.5" font-weight="700">AI Git</text>
+      <text x="12" y="61" class="t-muted" font-size="10.5">Bidirectional links between real</text>
+      <text x="12" y="75" class="t-muted" font-size="10.5">Git commits &amp; approved decisions</text>
+    </g>
+
+    <!-- Connectors: Center -> Right Pillars -->
+    <path d="M 406 118 L 424 118 L 424 92 L 438 92" class="w-indigo" marker-end="url(#a-indigo)"/>
+    <path d="M 406 192 L 438 192" class="w-amber" marker-end="url(#a-amber)"/>
+    <path d="M 406 266 L 424 266 L 424 292 L 438 292" class="w-emerald" marker-end="url(#a-emerald)"/>
+
+    <!-- Bottom Shared Backend / Governance Bar -->
+    <g transform="translate(20, 348)">
+      <rect x="0" y="0" width="624" height="28" rx="6" class="pill-cyan"/>
+      <text x="312" y="18" text-anchor="middle" fill="#E0F2FE" class="t-mono" font-size="10.5" font-weight="600">
+        Express.js 5 + Zod + SQLite + Authenticated React Dashboard (P0 Primary Approval · P1 Elicitation + AWS EC2/EBS)
+      </text>
+    </g>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="438" rx="15" class="frame"/>
+</svg>
